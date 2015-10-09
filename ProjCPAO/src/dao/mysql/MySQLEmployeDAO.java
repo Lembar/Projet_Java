@@ -4,7 +4,6 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.mysql.jdbc.PreparedStatement;
 
 import modele.metier.Employe;
 import modele.metier.Regle;
@@ -88,16 +87,17 @@ public class MySQLEmployeDAO implements EmployeDAO {
 	}
 
 	@Override
-	public ArrayList<Regle> getRegle(int id) {
+	public ArrayList<Regle> getRegle(Employe obj) {
 		ArrayList<Regle> regl = new ArrayList<Regle>();
 		PreparedStatement ps = null;
 
 		try {
-			ps = .prepareStatement("SELECT Regle.id_regle, Regle.conditio, action, actif FROM Regle, Concerne WHERE Regle.id_regle=Concerne.id_regle AND id_emp=?");
-			ps.setInt(1, id);
+			ps = Connect
+					.getInstance().prepareStatement("SELECT Regle.id_regle, Regle.conditio, action, actif FROM Regle, Concerne WHERE Regle.id_regle=Concerne.id_regle AND id_emp=?");
+			ps.setInt(1, obj.getId());
 			ResultSet rs=ps.executeQuery();
-			while(rs.netx())
-				regl.add(new Regle(rs.getInt(id), rs.getString("conditio"), rs.getString("action"), rs.getString("actif")));
+			while(rs.next())
+				regl.add(new Regle(rs.getInt("id"), rs.getString("conditio"), rs.getString("action"), rs.getBoolean("actif")));
 		}
 
 		catch (SQLException e) {
@@ -126,11 +126,5 @@ public class MySQLEmployeDAO implements EmployeDAO {
 
 		}
 		return map;
-	}
-
-	@Override
-	public ArrayList<Regle> getRegle(Employe obj) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 }
