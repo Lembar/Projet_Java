@@ -93,7 +93,7 @@ public class MySQLEmployeDAO implements EmployeDAO {
 		PreparedStatement ps = null;
 
 		try {
-			.prepareStatement("SELECT Regle.id_regle, Regle.conditio, action, actif FROM Regle, Concerne WHERE Regle.id_regle=Concerne.id_regle AND id_emp=?");
+			ps = .prepareStatement("SELECT Regle.id_regle, Regle.conditio, action, actif FROM Regle, Concerne WHERE Regle.id_regle=Concerne.id_regle AND id_emp=?");
 			ps.setInt(1, id);
 			ResultSet rs=ps.executeQuery();
 			while(rs.netx())
@@ -126,5 +126,11 @@ public class MySQLEmployeDAO implements EmployeDAO {
 
 		}
 		return map;
+	}
+
+	@Override
+	public ArrayList<Regle> getRegle(Employe obj) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
