@@ -54,9 +54,4 @@ public class ArrayListRegleDAO implements RegleDAO {
 		return null;
 	}
 
-	@Override
-	public ArrayList<Regle> getRegle() {
-		return alr;
-	}
-
 }

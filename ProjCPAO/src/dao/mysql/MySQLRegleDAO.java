@@ -90,9 +90,5 @@ public class MySQLRegleDAO implements RegleDAO {
 		return null;
 	}
 
-	@Override
-	public ArrayList<Regle> getRegle() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 }
