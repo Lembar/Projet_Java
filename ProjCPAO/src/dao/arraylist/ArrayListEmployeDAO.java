@@ -24,8 +24,8 @@ public class ArrayListEmployeDAO implements EmployeDAO {
 	
 	public ArrayListEmployeDAO() {
 		this.al=new ArrayList<Employe>();
-		Employe e1 = new Employe(1,"Zeis","Oceane",null);
-		Employe e2 = new Employe(2,"Hesse","Kevin",null);
+		Employe e1 = new Employe(1,"Zeis","Oceane");
+		Employe e2 = new Employe(2,"Hesse","Kevin");
 		al.add(e1);
 		al.add(e2);
 		

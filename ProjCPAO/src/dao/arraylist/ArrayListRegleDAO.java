@@ -53,5 +53,9 @@ public class ArrayListRegleDAO implements RegleDAO {
 		}
 		return null;
 	}
-
+	
+	public ArrayList<Regle> getRegle(){
+    	return alr;
+    }
+	
 }

@@ -1,6 +1,7 @@
 package test.arraylist;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
+import modele.metier.Cotisation;
 
 import org.junit.Test;
 
@@ -14,8 +15,13 @@ public class TestArrayListCotisation {
 	}
 	
 	@Test
-	public void testListCotisationNotNull(){
-//		assertNotNull(ArrayListCotisationDAO.getInstance().get)
+	public void testListeCotisationNotNull(){
+		assertNotNull(ArrayListCotisationDAO.getInstance().getCotisation());
 	}
 
+	@Test
+	public void testListeCotisationCreation(){
+		Cotisation cot = new Cotisation("testCot",0.42);
+		
+	}
 }

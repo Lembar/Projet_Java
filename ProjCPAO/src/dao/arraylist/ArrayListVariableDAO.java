@@ -1,8 +1,5 @@
 package dao.arraylist;
 import java.util.ArrayList;
-import java.util.HashMap;
-
-import modele.metier.Regle;
 import modele.metier.Variable;
 import dao.VariableDAO;
 
@@ -63,9 +60,5 @@ public class ArrayListVariableDAO implements VariableDAO{
 	public ArrayList<Variable> getVariable() {
 		return alv;
 	}
-
-    
-
-
 	
 }

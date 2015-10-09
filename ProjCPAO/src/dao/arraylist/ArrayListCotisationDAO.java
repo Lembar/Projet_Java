@@ -56,6 +56,10 @@ public class ArrayListCotisationDAO implements CotisationDAO {
             }
             return null;
     }
+    
+    public ArrayList<Cotisation> getCotisation(){
+    	return alc;
+    }
 	
 	
 }

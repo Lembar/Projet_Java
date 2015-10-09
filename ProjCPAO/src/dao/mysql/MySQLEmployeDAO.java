@@ -77,7 +77,7 @@ public class MySQLEmployeDAO implements EmployeDAO {
 					.executeQuery("SELECT * FROM Employe WHERE id_emp" + id);
 			if (res.next()) {
 				emp = new Employe(res.getInt(0), res.getString("nom"),
-						res.getString("prenom"), null);
+						res.getString("prenom"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
