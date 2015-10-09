@@ -1,7 +1,11 @@
 package dao.mysql;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import com.mysql.jdbc.PreparedStatement;
+
 import modele.metier.Variable;
 import dao.VariableDAO;
 
@@ -68,6 +72,7 @@ public class MySQLVariableDAO implements VariableDAO {
 	@Override
 	public Variable getByID(int id) {
 
+		Variable var = null;
 		try {
 			ResultSet res = Connect
 					.getInstance()
@@ -75,6 +80,8 @@ public class MySQLVariableDAO implements VariableDAO {
 							ResultSet.CONCUR_UPDATABLE)
 					.executeQuery("SELECT * FROM Employe WHERE id_emp" + id);
 			if (res.next()) {
+				var = new Variable(res.getInt(0), res.getString("libele_var"),
+						res.getString("type"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -82,5 +89,13 @@ public class MySQLVariableDAO implements VariableDAO {
 
 		return null;
 	}
+
+	@Override
+	public ArrayList<Variable> getVariable() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
 
 }
