@@ -37,9 +37,7 @@ public class Connect {
 			if (connexion == null || connexion.isClosed()) {
 				try {
 					connexion = DriverManager.getConnection(
-							p.getProperty("adresse_ip") + ":"
-									+ p.getProperty("port") + '/'
-									+ p.getProperty("bdd"),
+							p.getProperty("adresse_ip") + ":" + p.getProperty("port") + '/' + p.getProperty("bdd"),
 							p.getProperty("login"), p.getProperty("pass"));
 				} catch (SQLException e) {
 					e.printStackTrace();

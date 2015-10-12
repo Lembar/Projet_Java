@@ -75,8 +75,7 @@ public class Employe {
 
 	@Override
 	public String toString() {
-		return "Employe [id=" + id + ", nom=" + nom + ", prenom=" + prenom
-				+ ", regle=" + regle + ", hm=" + hm + "]";
+		return "Employe [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", regle=" + regle + ", hm=" + hm + "]";
 	}
 
 }

@@ -23,8 +23,7 @@ public class MySQLRegleDAO implements RegleDAO {
 
 		PreparedStatement ps = null;
 		try {
-			ps = (PreparedStatement) Connect.getInstance().prepareStatement(
-					"INSERT INTO Regle values (null,?,?,?)");
+			ps = (PreparedStatement) Connect.getInstance().prepareStatement("INSERT INTO Regle values (null,?,?,?)");
 			ps.setString(1, obj.getCond());
 			ps.setString(2, obj.getAction());
 			ps.setBoolean(3, obj.getActif());
@@ -38,8 +37,7 @@ public class MySQLRegleDAO implements RegleDAO {
 
 		PreparedStatement ps = null;
 		try {
-			ps = (PreparedStatement) Connect.getInstance().prepareStatement(
-					"DELETE FROM Regle WHERE id_regle=?");
+			ps = (PreparedStatement) Connect.getInstance().prepareStatement("DELETE FROM Regle WHERE id_regle=?");
 			ps.setInt(1, obj.getId());
 			ps.executeUpdate();
 		}
@@ -54,10 +52,8 @@ public class MySQLRegleDAO implements RegleDAO {
 
 		PreparedStatement ps = null;
 		try {
-			ps = (PreparedStatement) Connect
-					.getInstance()
-					.prepareStatement(
-							"UPDATE Regle SET conditio=?, action=?, actif=? WHERE id_regle=?");
+			ps = (PreparedStatement) Connect.getInstance()
+					.prepareStatement("UPDATE Regle SET conditio=?, action=?, actif=? WHERE id_regle=?");
 			ps.setString(1, obj.getCond());
 			ps.setString(2, obj.getAction());
 			ps.setBoolean(3, obj.getActif());
@@ -74,14 +70,12 @@ public class MySQLRegleDAO implements RegleDAO {
 
 		Regle reg = null;
 		try {
-			ResultSet res = Connect
-					.getInstance()
-					.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
-							ResultSet.CONCUR_UPDATABLE)
+			ResultSet res = Connect.getInstance()
+					.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE)
 					.executeQuery("SELECT * FROM Employe WHERE id_emp" + id);
 			if (res.next()) {
-				reg = new Regle(res.getInt(0), res.getString("condition"),
-						res.getString("action"), res.getBoolean("actif"));
+				reg = new Regle(res.getInt(0), res.getString("condition"), res.getString("action"),
+						res.getBoolean("actif"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -89,6 +83,5 @@ public class MySQLRegleDAO implements RegleDAO {
 
 		return null;
 	}
-
 
 }

@@ -70,5 +70,9 @@ public class ArrayListEmployeDAO implements EmployeDAO {
 	public HashMap<Variable, String> getHm(int id) {		
 		return getHm(id);
 	}
+	
+	public ArrayList<Employe> getEmploye(){
+		return al;
+	}
 
 }

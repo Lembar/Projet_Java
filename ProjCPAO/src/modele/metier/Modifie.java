@@ -48,8 +48,7 @@ public class Modifie {
 
 	@Override
 	public String toString() {
-		return "Modifie [id_emp=" + idEmploye + ", id_var=" + idVariable
-				+ ", valeur=" + valeur + "]";
+		return "Modifie [id_emp=" + idEmploye + ", id_var=" + idVariable + ", valeur=" + valeur + "]";
 	}
 
 }

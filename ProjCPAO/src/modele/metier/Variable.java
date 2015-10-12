@@ -51,8 +51,7 @@ public class Variable {
 
 	@Override
 	public String toString() {
-		return "Variable [id=" + id + ", libelle=" + libelle + ", type=" + type
-				+ "]";
+		return "Variable [id=" + id + ", libelle=" + libelle + ", type=" + type + "]";
 	}
 
 }

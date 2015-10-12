@@ -48,8 +48,7 @@ public class Cotisation {
 
 	@Override
 	public String toString() {
-		return "Cotisation [id=" + id + ", libelle=" + libelle + ", taux="
-				+ taux + "]";
+		return "Cotisation [id=" + id + ", libelle=" + libelle + ", taux=" + taux + "]";
 	}
 
 }

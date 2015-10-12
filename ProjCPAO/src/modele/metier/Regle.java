@@ -6,14 +6,14 @@ public class Regle {
 	private String action = "";
 	private boolean actif;
 
-	public Regle(){
+	public Regle() {
 		this(-1, "", "", false);
 	}
-	
-	public Regle(String condition, String action, boolean actif){
+
+	public Regle(String condition, String action, boolean actif) {
 		this(-1, condition, action, actif);
 	}
-	
+
 	public Regle(int id, String condition, String action, boolean actif) {
 		this.id = id;
 		this.setCond(condition);
@@ -61,8 +61,7 @@ public class Regle {
 
 	@Override
 	public String toString() {
-		return "Regle [id=" + id + ", condition=" + condition + ", action="
-				+ action + ", actif=" + actif + "]";
+		return "Regle [id=" + id + ", condition=" + condition + ", action=" + action + ", actif=" + actif + "]";
 	}
 
 }
