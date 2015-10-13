@@ -56,7 +56,7 @@ public class ArrayListRegleDAO implements RegleDAO {
 
 		Regle regle = regles.get(regles.indexOf(obj));
 
-		regle.setCond(obj.getCond());
+		regle.setCondition(obj.getCondition());
 		regle.setAction(obj.getAction());
 		regle.setActif(obj.getActif());
 

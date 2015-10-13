@@ -36,46 +36,44 @@ public class TestArrayListRegle {
 	}
 
 	@Test
-	public void testListeRegleGetByID() {
-		Regle cot = new Regle(555, "Statut = Cadre", "Rep = 0.008", false);
-		ArrayListRegleDAO.getInstance().create(cot);
-		assertEquals(555, ArrayListRegleDAO.getInstance().getByID(555).getId());
+	public void testListeRegleGetByIDNotNull() {
+		Regle regle = new Regle("Statut = Cadre", "Rep = 0.008", false);
+		int id = ArrayListRegleDAO.getInstance().create(regle);
+		assertNotNull(ArrayListRegleDAO.getInstance().getByID(id));
 	}
 
 	@Test
-	public void testListeRegleUpdateID() {
-		Regle regle = new Regle(555, "Statut = Cadre", "Rep = 0.008", false);
-		ArrayListRegleDAO.getInstance().create(regle);
-		regle.setId(666);
-		ArrayListRegleDAO.getInstance().update(regle);
-		assertEquals(666, ArrayListRegleDAO.getInstance().getByID(555).getId());
+	public void testListeRegleGetByID() {
+		Regle cot = new Regle("Statut = Cadre", "Rep = 0.008", false);
+		int id = ArrayListRegleDAO.getInstance().create(cot);
+		assertEquals(id, ArrayListRegleDAO.getInstance().getByID(id).getId());
 	}
 
 	@Test
 	public void testListeRegleUpdateCondition() {
-		Regle regle = new Regle(555, "Statut = Cadre", "Rep = 0.008", false);
-		ArrayListRegleDAO.getInstance().create(regle);
-		regle.setCond("Brut > 3200 ET statut = “employé“");
+		Regle regle = new Regle("Statut = Cadre", "Rep = 0.008", false);
+		int id = ArrayListRegleDAO.getInstance().create(regle);
+		regle.setCondition("Statut = Salarié");
 		ArrayListRegleDAO.getInstance().update(regle);
-		assertEquals("Brut > 3200 ET statut = “employé“", ArrayListRegleDAO.getInstance().getByID(555).getCond());
+		assertEquals("Statut = Salarié", ArrayListRegleDAO.getInstance().getByID(id).getCondition());
 	}
 
 	@Test
 	public void testListeRegleUpdateAction() {
-		Regle regle = new Regle(555, "Statut = Cadre", "Rep = 0.008", false);
-		ArrayListRegleDAO.getInstance().create(regle);
+		Regle regle = new Regle("Statut = Cadre", "Rep = 0.008", false);
+		int id = ArrayListRegleDAO.getInstance().create(regle);
 		regle.setAction("RCP = 0,05");
 		ArrayListRegleDAO.getInstance().update(regle);
-		assertEquals("RCP = 0,05", ArrayListRegleDAO.getInstance().getByID(555).getAction());
+		assertEquals("RCP = 0,05", ArrayListRegleDAO.getInstance().getByID(id).getAction());
 	}
 
 	@Test
 	public void testListeRegleUpdateActif() {
-		Regle regle = new Regle(555, "Statut = Cadre", "Rep = 0.008", false);
-		ArrayListRegleDAO.getInstance().create(regle);
+		Regle regle = new Regle("Statut = Cadre", "Rep = 0.008", false);
+		int id = ArrayListRegleDAO.getInstance().create(regle);
 		regle.setActif(true);
 		ArrayListRegleDAO.getInstance().update(regle);
-		assertEquals(true, ArrayListRegleDAO.getInstance().getByID(555).getActif());
+		assertEquals(true, ArrayListRegleDAO.getInstance().getByID(id).getActif());
 	}
 
 }

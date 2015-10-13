@@ -28,15 +28,15 @@ public class TestRegle {
 	
 	@Test
 	public void TestRegleGetCond() {
-		assertEquals(r2.getCond(),"cadre");
+		assertEquals(r2.getCondition(),"cadre");
 		
 	}
 	
 	@Test
 	public void TestRegleSetCond() {
 		Regle r3 = new Regle();
-		r3.setCond("abc");
-		assertEquals(r3.getCond(),"abc");
+		r3.setCondition("abc");
+		assertEquals(r3.getCondition(),"abc");
 	}
 	
 	@Test

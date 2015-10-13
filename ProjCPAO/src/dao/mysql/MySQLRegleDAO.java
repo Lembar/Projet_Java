@@ -25,7 +25,7 @@ public class MySQLRegleDAO implements RegleDAO {
 		try {
 			ps = (PreparedStatement) Connect.getInstance().prepareStatement("INSERT INTO Regle values (null,?,?,?)",
 					Statement.RETURN_GENERATED_KEYS);
-			ps.setString(1, obj.getCond());
+			ps.setString(1, obj.getCondition());
 			ps.setString(2, obj.getAction());
 			ps.setBoolean(3, obj.getActif());
 			ps.executeUpdate();
@@ -60,7 +60,7 @@ public class MySQLRegleDAO implements RegleDAO {
 		try {
 			ps = (PreparedStatement) Connect.getInstance()
 					.prepareStatement("UPDATE Regle SET conditio=?, action=?, actif=? WHERE id_regle=?");
-			ps.setString(1, obj.getCond());
+			ps.setString(1, obj.getCondition());
 			ps.setString(2, obj.getAction());
 			ps.setBoolean(3, obj.getActif());
 			ps.setInt(4, obj.getId());

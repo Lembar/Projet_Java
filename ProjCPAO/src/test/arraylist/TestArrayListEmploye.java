@@ -34,17 +34,17 @@ public class TestArrayListEmploye {
 	}
 
 	@Test
-	public void testListeCotisationGetByIDNotNull() {
-		Employe emp = new Employe(555, "Doe", "John");
-		ArrayListEmployeDAO.getInstance().create(emp);
-		assertNotNull(ArrayListEmployeDAO.getInstance().getByID(555));
+	public void testListeEmployeGetByIDNotNull() {
+		Employe emp = new Employe("Doe", "John");
+		int id = ArrayListEmployeDAO.getInstance().create(emp);
+		assertNotNull(ArrayListEmployeDAO.getInstance().getByID(id));
 	}
 
 	@Test
 	public void testListeEmployeGetByID() {
-		Employe emp = new Employe(555, "Doe", "John");
-		ArrayListEmployeDAO.getInstance().create(emp);
-		assertEquals(555, ArrayListEmployeDAO.getInstance().getByID(555).getId());
+		Employe emp = new Employe("Doe", "John");
+		int id = ArrayListEmployeDAO.getInstance().create(emp);
+		assertEquals(id, ArrayListEmployeDAO.getInstance().getByID(id).getId());
 	}
 
 	@Test

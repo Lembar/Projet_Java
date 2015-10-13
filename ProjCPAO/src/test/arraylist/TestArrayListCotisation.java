@@ -39,16 +39,16 @@ public class TestArrayListCotisation {
 	
 	@Test
 	public void testListeCotisationGetByIDNotNull() {
-		Cotisation cot = new Cotisation(555, "testC", 0.42);
-		ArrayListCotisationDAO.getInstance().create(cot);
-		assertNotNull(ArrayListCotisationDAO.getInstance().getByID(555));
+		Cotisation cot = new Cotisation("testC", 0.42);
+		int id = ArrayListCotisationDAO.getInstance().create(cot);
+		assertNotNull(ArrayListCotisationDAO.getInstance().getByID(id));
 	}
 
 	@Test
 	public void testListeCotisationGetByID() {
-		Cotisation cot = new Cotisation(555, "testC", 0.42);
-		ArrayListCotisationDAO.getInstance().create(cot);
-		assertEquals(555, ArrayListCotisationDAO.getInstance().getByID(555).getId());
+		Cotisation cot = new Cotisation("testC", 0.42);
+		int id = ArrayListCotisationDAO.getInstance().create(cot);
+		assertEquals(id, ArrayListCotisationDAO.getInstance().getByID(id).getId());
 	}
 
 	@Test

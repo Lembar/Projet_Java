@@ -2,7 +2,6 @@ package dao.arraylist;
 
 import java.util.ArrayList;
 
-import modele.metier.Regle;
 import modele.metier.Variable;
 import dao.VariableDAO;
 

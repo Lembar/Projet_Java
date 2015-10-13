@@ -16,7 +16,7 @@ public class Regle {
 
 	public Regle(int id, String condition, String action, boolean actif) {
 		this.id = id;
-		this.setCond(condition);
+		this.setCondition(condition);
 		this.setAction(action);
 		this.actif = actif;
 	}
@@ -29,11 +29,11 @@ public class Regle {
 		this.id = id;
 	}
 
-	public String getCond() {
+	public String getCondition() {
 		return condition;
 	}
 
-	public void setCond(String condition) {
+	public void setCondition(String condition) {
 		if ((condition != null) && (condition.trim().length() > 0)) {
 			this.condition = condition.trim();
 		} else
