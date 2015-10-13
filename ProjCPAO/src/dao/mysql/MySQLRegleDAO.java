@@ -18,16 +18,23 @@ public class MySQLRegleDAO implements RegleDAO {
 	}
 
 	@Override
-	public void create(Regle obj) {
+	public int create(Regle obj) {
 
 		PreparedStatement ps = null;
+		ResultSet rs = null;
 		try {
-			ps = (PreparedStatement) Connect.getInstance().prepareStatement("INSERT INTO Regle values (null,?,?,?)");
+			ps = (PreparedStatement) Connect.getInstance().prepareStatement("INSERT INTO Regle values (null,?,?,?)",
+					Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, obj.getCond());
 			ps.setString(2, obj.getAction());
 			ps.setBoolean(3, obj.getActif());
+			ps.executeUpdate();
+			rs = ps.getGeneratedKeys();
+			rs.next();
+			return rs.getInt(1);
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return -1;
 		}
 	}
 
@@ -57,6 +64,7 @@ public class MySQLRegleDAO implements RegleDAO {
 			ps.setString(2, obj.getAction());
 			ps.setBoolean(3, obj.getActif());
 			ps.setInt(4, obj.getId());
+			ps.executeUpdate();
 		}
 
 		catch (SQLException e) {
@@ -67,20 +75,20 @@ public class MySQLRegleDAO implements RegleDAO {
 	@Override
 	public Regle getByID(int id) {
 
-		Regle reg = null;
+		Regle regle = null;
 		try {
 			ResultSet res = Connect.getInstance()
 					.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE)
 					.executeQuery("SELECT * FROM Employe WHERE id_emp" + id);
 			if (res.next()) {
-				reg = new Regle(res.getInt(0), res.getString("condition"), res.getString("action"),
+				regle = new Regle(res.getInt(0), res.getString("condition"), res.getString("action"),
 						res.getBoolean("actif"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
-		return null;
+		return regle;
 	}
 
 }

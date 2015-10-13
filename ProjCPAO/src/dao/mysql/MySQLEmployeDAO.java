@@ -21,15 +21,22 @@ public class MySQLEmployeDAO implements EmployeDAO {
 	}
 
 	@Override
-	public void create(Employe obj) {
+	public int create(Employe obj) {
 
 		PreparedStatement ps = null;
+		ResultSet rs = null;
 		try {
-			ps = (PreparedStatement) Connect.getInstance().prepareStatement("INSERT INTO Employe values (null,?,?)");
+			ps = (PreparedStatement) Connect.getInstance().prepareStatement("INSERT INTO Employe values (null,?,?)",
+					Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, obj.getNom());
 			ps.setString(2, obj.getPrenom());
+			ps.executeUpdate();
+			rs = ps.getGeneratedKeys();
+			rs.next();
+			return rs.getInt(1);
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return -1;
 		}
 	}
 
@@ -55,6 +62,7 @@ public class MySQLEmployeDAO implements EmployeDAO {
 			ps.setString(1, obj.getNom());
 			ps.setString(2, obj.getPrenom());
 			ps.setInt(3, obj.getId());
+			ps.executeUpdate();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -76,7 +84,7 @@ public class MySQLEmployeDAO implements EmployeDAO {
 			e.printStackTrace();
 		}
 
-		return null;
+		return emp;
 	}
 
 	@Override

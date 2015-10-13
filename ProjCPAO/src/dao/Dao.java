@@ -1,7 +1,7 @@
 package dao;
 
 public interface Dao<T> {
-	public void create(T obj);
+	public int create(T obj);
 
 	public void delete(T obj);
 

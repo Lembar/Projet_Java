@@ -2,7 +2,6 @@ package dao.mysql;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import com.mysql.jdbc.PreparedStatement;
 
@@ -21,17 +20,24 @@ public class MySQLVariableDAO implements VariableDAO {
 	}
 
 	@Override
-	public void create(Variable obj) {
+	public int create(Variable obj) {
 
 		PreparedStatement ps = null;
+		ResultSet rs = null;
 		try {
-			ps = (PreparedStatement) Connect.getInstance().prepareStatement("INSERT INTO Variable values (null,?,?)");
+			ps = (PreparedStatement) Connect.getInstance().prepareStatement("INSERT INTO Variable values (null,?,?)",
+					Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, obj.getLibelle());
 			ps.setString(2, obj.getType());
+			ps.executeUpdate();
+			rs = ps.getGeneratedKeys();
+			rs.next();
+			return rs.getInt(1);
 		}
 
 		catch (SQLException e) {
 			e.printStackTrace();
+			return -1;
 		}
 	}
 
@@ -60,6 +66,7 @@ public class MySQLVariableDAO implements VariableDAO {
 			ps.setString(1, obj.getLibelle());
 			ps.setString(2, obj.getType());
 			ps.setInt(3, obj.getId());
+			ps.executeUpdate();
 		}
 
 		catch (SQLException e) {
@@ -82,7 +89,7 @@ public class MySQLVariableDAO implements VariableDAO {
 			e.printStackTrace();
 		}
 
-		return null;
+		return var;
 	}
 
 	@Override

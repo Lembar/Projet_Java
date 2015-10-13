@@ -16,46 +16,64 @@ public class ArrayListRegleDAO implements RegleDAO {
 		return instance;
 	}
 
-	private ArrayList<Regle> alr;
+	private ArrayList<Regle> regles;
 
 	public ArrayListRegleDAO() {
-		this.alr = new ArrayList<Regle>();
+		this.regles = new ArrayList<Regle>();
 		Regle r1 = new Regle(1, "cadre et brut3200", "rcp=0.05", false);
 		Regle r2 = new Regle(2, "cadre", "Pce=0.05", false);
-		alr.add(r1);
-		alr.add(r2);
+		regles.add(r1);
+		regles.add(r2);
 	}
 
 	@Override
-	public void create(Regle obj) {
-		this.alr.add(obj);
+	public int create(Regle obj) {
+		int id = 1;
+		if (obj.getId() == -1) {
+			if (!regles.isEmpty()) {
+				id = regles.get(regles.size() - 1).getId() + 1;
+			}
+		} else {
+			id = obj.getId();
+		}
+		obj.setId(id);
+		this.regles.add(obj);
+		return id;
 
 	}
 
 	@Override
 	public void delete(Regle obj) {
-		this.alr.remove(obj);
+		this.regles.remove(obj);
 
 	}
 
 	@Override
 	public void update(Regle obj) {
-		this.alr.set(this.alr.indexOf(obj), obj);
+		if (!regles.contains(obj)) {
+			throw new IndexOutOfBoundsException("L'objet a mettre a jour n'est pas dans la liste");
+		}
+
+		Regle regle = regles.get(regles.indexOf(obj));
+
+		regle.setCond(obj.getCond());
+		regle.setAction(obj.getAction());
+		regle.setActif(obj.getActif());
 
 	}
 
 	@Override
 	public Regle getByID(int id) {
-		for (int i = 0; i < this.alr.size(); i++) {
-			if (this.alr.get(i).getId() == id) {
-				return this.alr.get(i);
+		for (int i = 0; i < this.regles.size(); i++) {
+			if (this.regles.get(i).getId() == id) {
+				return this.regles.get(i);
 			}
 		}
 		return null;
 	}
 
 	public ArrayList<Regle> getRegle() {
-		return alr;
+		return regles;
 	}
 
 }
