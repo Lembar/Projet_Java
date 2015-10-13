@@ -1,7 +1,6 @@
 package dao.mysql;
 
 import java.sql.*;
-import java.util.ArrayList;
 
 import com.mysql.jdbc.PreparedStatement;
 

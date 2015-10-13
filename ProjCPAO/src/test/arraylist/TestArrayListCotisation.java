@@ -68,7 +68,7 @@ public class TestArrayListCotisation {
 		ArrayListCotisationDAO.getInstance().create(cot);
 		cot.setTaux(0.666);
 		ArrayListCotisationDAO.getInstance().update(cot);
-		assertEquals(0.666, ArrayListCotisationDAO.getInstance().getByID(555).getTaux());
+		assertEquals(0.666, ArrayListCotisationDAO.getInstance().getByID(555).getTaux(),1e-5);
 	}
 
 }
