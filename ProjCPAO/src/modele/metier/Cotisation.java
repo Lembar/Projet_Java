@@ -6,7 +6,7 @@ public class Cotisation {
 	private double taux;
 
 	public Cotisation() {
-		this(-1, "", -1);
+		this(-1, "meh", -1);
 	}
 
 	public Cotisation(String libelle, double taux) {

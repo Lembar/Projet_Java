@@ -7,65 +7,64 @@ import org.junit.Test;
 
 public class TestRegle {
 
-	Regle r2 = new Regle(2, "cadre", "Pce=0.05", false);
+	Regle regle = new Regle(2, "Statut = cadre", "Pce = 0.05", false);
 
 	@Test
-	public void TestRegleNotNull() {
-		assertNotNull(r2);
-	}
-	
-	@Test
-	public void TestRegleGetId() {
-		assertEquals(2, r2.getId());
+	public void testRegleNotNull() {
+		assertNotNull(regle);
 	}
 
 	@Test
-	public void TestRegleSetId() {
+	public void testRegleGetId() {
+		assertEquals(2, regle.getId());
+	}
+
+	@Test
+	public void testRegleSetId() {
 		Regle r1 = new Regle();
 		r1.setId(1);
-		assertEquals(r1.getId(), 1);
+		assertEquals(1, r1.getId());
 	}
-	
+
 	@Test
-	public void TestRegleGetCond() {
-		assertEquals(r2.getCondition(),"cadre");
-		
+	public void testRegleGetCondition() {
+		assertEquals("Statut = cadre", regle.getCondition());
+
 	}
-	
+
 	@Test
-	public void TestRegleSetCond() {
+	public void testRegleSetCondition() {
 		Regle r3 = new Regle();
 		r3.setCondition("abc");
-		assertEquals(r3.getCondition(),"abc");
+		assertEquals("abc", r3.getCondition());
 	}
-	
+
 	@Test
-	public void TestRegleGetAction() {
-		assertEquals("Pce=0.05",r2.getAction());
-		
+	public void testRegleGetAction() {
+		assertEquals("Pce = 0.05", regle.getAction());
+
 	}
-	
+
 	@Test
-	public void TestRegleSetAction() {
+	public void testRegleSetAction() {
 		Regle r3 = new Regle();
 		r3.setAction("abc");
-		assertEquals(r3.getAction(),"abc");
-		
+		assertEquals("abc", r3.getAction());
+
 	}
-	
+
 	@Test
-	public void TestRegleGetActif() {
-		assertEquals(r2.getActif(),false);
-		
+	public void testRegleGetActif() {
+		assertEquals(false, regle.getActif());
+
 	}
-	
+
 	@Test
-	public void TestRegleSetActif() {
+	public void testRegleSetActif() {
 		Regle r3 = new Regle();
 		r3.setActif(true);
-		assertEquals(r3.getActif(),true);
-		
+		assertEquals(true, r3.getActif());
+
 	}
-	
-	
+
 }

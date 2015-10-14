@@ -6,7 +6,7 @@ public class Modifie {
 	private String valeur = "";
 
 	public Modifie() {
-		this(-1, -1, "");
+		this(-1, -1, "Meh");
 	}
 
 	public Modifie(String valeur) {
@@ -19,19 +19,19 @@ public class Modifie {
 		this.setValeur(valeur);
 	}
 
-	public int getId_emp() {
+	public int getIdEmploye() {
 		return idEmploye;
 	}
 
-	public void setId_emp(int id_emp) {
+	public void setIdEmploye(int id_emp) {
 		this.idEmploye = id_emp;
 	}
 
-	public int getId_var() {
+	public int getIdVariable() {
 		return idVariable;
 	}
 
-	public void setId_var(int id_var) {
+	public void setIdVariable(int id_var) {
 		this.idVariable = id_var;
 	}
 
@@ -48,7 +48,8 @@ public class Modifie {
 
 	@Override
 	public String toString() {
-		return "Modifie [id_emp=" + idEmploye + ", id_var=" + idVariable + ", valeur=" + valeur + "]";
+		return "Modifie [id_emp=" + idEmploye + ", id_var=" + idVariable
+				+ ", valeur=" + valeur + "]";
 	}
 
 }

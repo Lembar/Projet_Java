@@ -6,51 +6,48 @@ import modele.metier.Employe;
 import org.junit.Test;
 
 public class TestEmploye {
-	
-	Employe e1 = new Employe(1,"Zeis","Oceane");
-	
+
+	Employe emp = new Employe(1, "Zeis", "Oceane");
+
 	@Test
-	public void TestEmployeNotNull() {
-		assertNotNull(e1);	
-	}
-	
-	@Test
-	public void TestEmployeGetId() {
-		assertEquals(1, e1.getId());
+	public void testEmployeNotNull() {
+		assertNotNull(emp);
 	}
 
 	@Test
-	public void TestEmployeSetId() {
+	public void testEmployeGetId() {
+		assertEquals(1, emp.getId());
+	}
+
+	@Test
+	public void testEmployeSetId() {
 		Employe e = new Employe();
 		e.setId(1);
-		assertEquals(1,e.getId());
+		assertEquals(1, e.getId());
 	}
-	
+
 	@Test
-	public void TestEmployeGetNom() {
-		assertEquals("Zeis",e1.getNom());
+	public void testEmployeGetNom() {
+		assertEquals("Zeis", emp.getNom());
 	}
-	
+
 	@Test
-	public void TestEmployeSetNom(){
+	public void testEmployeSetNom() {
 		Employe e = new Employe();
 		e.setNom("Toto");
-		assertEquals(e.getNom(),"Toto");
+		assertEquals(e.getNom(), "Toto");
 	}
-	
+
 	@Test
-	public void TestEmployeGetPrenom() {
-		assertEquals("Oceane",e1.getPrenom());
+	public void testEmployeGetPrenom() {
+		assertEquals("Oceane", emp.getPrenom());
 	}
-	
+
 	@Test
-	public void TestEmployeSetPrenom(){
+	public void testEmployeSetPrenom() {
 		Employe e = new Employe();
 		e.setPrenom("Toto");
-		assertEquals(e.getPrenom(),"Toto");
+		assertEquals(e.getPrenom(), "Toto");
 	}
-	
-	
+
 }
-
-

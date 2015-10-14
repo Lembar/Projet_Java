@@ -6,7 +6,7 @@ public class Variable {
 	private String type = "";
 
 	public Variable() {
-		this(-1, "", "");
+		this(-1, "Meh", "Meh");
 	}
 
 	public Variable(String libelle, String type) {

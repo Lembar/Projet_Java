@@ -7,7 +7,7 @@ public class Regle {
 	private boolean actif;
 
 	public Regle() {
-		this(-1, "", "", false);
+		this(-1, "Meh", "Meh", false);
 	}
 
 	public Regle(String condition, String action, boolean actif) {

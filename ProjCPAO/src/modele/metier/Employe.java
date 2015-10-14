@@ -24,7 +24,7 @@ public class Employe {
 	}
 
 	public Employe() {
-		this(-1, "", "");
+		this(-1, "Doe", "John");
 	}
 
 	public int getId() {
