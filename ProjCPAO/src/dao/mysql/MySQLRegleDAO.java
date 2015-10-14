@@ -20,7 +20,7 @@ public class MySQLRegleDAO implements RegleDAO {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		try {
-			ps = (PreparedStatement) Connect.getInstance().prepareStatement(
+			ps = Connect.getInstance().prepareStatement(
 					"INSERT INTO Regle values (null,?,?,?)",
 					Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, obj.getCondition());

@@ -10,28 +10,26 @@ import dao.mysql.MySQLRegleDAO;
 public class TestMYSQLRegle {
 
 	@Test
-	public void testConnexion() {
+	public void testSingleton() {
 		assertNotNull(MySQLRegleDAO.getInstance());
 	}
 
 	@Test
 	public void testCreerRegleNotNull() {
-		Regle r = new Regle(100, "statut='cadre' et brut>3200", "abc", true);
-		Regle r1 = new Regle("a", "a", true);
-		MySQLRegleDAO.getInstance().create(r);
-		r1 = MySQLRegleDAO.getInstance().getByID(100);
-		assertNotNull(r1);
+		Regle regle = new Regle("statut='cadre' et brut>3200", "abc", true);
+		int id = MySQLRegleDAO.getInstance().create(regle);
+		Regle regle1 = MySQLRegleDAO.getInstance().getByID(id);
+		assertNotNull(regle1);
 	}
 
 	@Test
 	public void testCreerRegle() {
-		Regle r = new Regle(100, "statut='cadre' et brut>3200", "RCP=0.05", true);
-		Regle r1 = new Regle("a", "a", false);
-		MySQLRegleDAO.getInstance().create(r);
-		r1 = MySQLRegleDAO.getInstance().getByID(100);
-		assertEquals("statut='cadre' et brut>3200", r1.getCondition());
-		assertEquals("RCP=0.05", r1.getAction());
-		assertEquals(true, r1.getActif());
+		Regle regle = new Regle("statut='cadre' et brut>3200", "RCP=0.05",true);
+		int id = MySQLRegleDAO.getInstance().create(regle);
+		Regle regle1 = MySQLRegleDAO.getInstance().getByID(id);
+		assertEquals("statut='cadre' et brut>3200", regle1.getCondition());
+		assertEquals("RCP=0.05", regle1.getAction());
+		assertEquals(true, regle1.getActif());
 	}
 
 	@Test
@@ -41,36 +39,50 @@ public class TestMYSQLRegle {
 
 	@Test
 	public void testGetById() {
-		Regle r = new Regle(100, "statut='cadre' et brut>3200", "RCP=0.05", true);
-		assertEquals(r.getId(), MySQLRegleDAO.getInstance().getByID(100).getId());
-		assertEquals(r.getCondition(), MySQLRegleDAO.getInstance().getByID(100).getCondition());
-		assertEquals(r.getAction(), MySQLRegleDAO.getInstance().getByID(100).getAction());
-		assertEquals(r.getActif(), MySQLRegleDAO.getInstance().getByID(100).getActif());
+		Regle regle = new Regle("statut='cadre' et brut>3200", "RCP=0.05",
+				true);
+		int id = MySQLRegleDAO.getInstance().create(regle);
+		assertEquals(id, MySQLRegleDAO.getInstance().getByID(id)
+				.getId());
+		assertEquals(regle.getCondition(), MySQLRegleDAO.getInstance().getByID(id)
+				.getCondition());
+		assertEquals(regle.getAction(), MySQLRegleDAO.getInstance().getByID(id)
+				.getAction());
+		assertEquals(regle.getActif(), MySQLRegleDAO.getInstance().getByID(id)
+				.getActif());
 	}
 
 	@Test
 	public void testUpdateRegle() {
-		Regle r1 = new Regle(200, "statut='cadre' et brut>3200", "RCP=0.05", true);
-		MySQLRegleDAO.getInstance().update(r1);
-		assertEquals(r1.getId(), MySQLRegleDAO.getInstance().getByID(200).getId());
-		assertEquals(r1.getCondition(), MySQLRegleDAO.getInstance().getByID(200).getCondition());
-		assertEquals(r1.getAction(), MySQLRegleDAO.getInstance().getByID(200).getAction());
-		assertEquals(r1.getActif(), MySQLRegleDAO.getInstance().getByID(200).getActif());
+		Regle regle1 = new Regle("statut='cadre' et brut>3200", "RCP=0.05",
+				true);
+		int id = MySQLRegleDAO.getInstance().create(regle1);
+		MySQLRegleDAO.getInstance().update(regle1);
+		assertEquals(id, MySQLRegleDAO.getInstance().getByID(id)
+				.getId());
+		assertEquals(regle1.getCondition(), MySQLRegleDAO.getInstance()
+				.getByID(id).getCondition());
+		assertEquals(regle1.getAction(), MySQLRegleDAO.getInstance().getByID(id)
+				.getAction());
+		assertEquals(regle1.getActif(), MySQLRegleDAO.getInstance().getByID(id)
+				.getActif());
 	}
 
 	@Test
 	public void testUpdateRegleNotNull() {
-		Regle r = new Regle(300, "statut='cadre' et brut>3200", "RCP=0.05", false);
-		Regle r1 = new Regle("a", "a", false);
-		MySQLRegleDAO.getInstance().update(r);
-		r1 = MySQLRegleDAO.getInstance().getByID(300);
-		assertNotNull(r1);
+		Regle regle = new Regle("statut='cadre' et brut>3200", "RCP=0.05",
+				false);
+		int id = MySQLRegleDAO.getInstance().create(regle);
+		MySQLRegleDAO.getInstance().update(regle);
+		Regle regle1 = MySQLRegleDAO.getInstance().getByID(id);
+		assertNotNull(regle1);
 	}
 
 	@Test
 	public void testDeleteRegle() {
-		Regle v = new Regle(220, "statut='cadre' et brut>3200", "RCP=0.05", false);
-		MySQLRegleDAO.getInstance().delete(v);
+		Regle regle = new Regle(220, "statut='cadre' et brut>3200", "RCP=0.05",
+				false);
+		MySQLRegleDAO.getInstance().delete(regle);
 		assertNull(MySQLRegleDAO.getInstance().getByID(220));
 	}
 }

@@ -20,7 +20,8 @@ public class MySQLCotisationDAO implements CotisationDAO {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		try {
-			ps = Connect.getInstance().prepareStatement("INSERT INTO Cotisation values (null,?,?)",
+			ps = Connect.getInstance().prepareStatement(
+					"INSERT INTO Cotisation values (null,?,?)",
 					Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, obj.getLibelle());
 			ps.setDouble(2, obj.getTaux());
@@ -41,7 +42,8 @@ public class MySQLCotisationDAO implements CotisationDAO {
 
 		PreparedStatement ps = null;
 		try {
-			ps =  Connect.getInstance().prepareStatement("DELETE FROM Cotisation WHERE id_cotis=?");
+			ps = Connect.getInstance().prepareStatement(
+					"DELETE FROM Cotisation WHERE id_cotis=?");
 			ps.setInt(1, obj.getId());
 			ps.executeUpdate();
 		}
@@ -56,8 +58,10 @@ public class MySQLCotisationDAO implements CotisationDAO {
 
 		PreparedStatement ps = null;
 		try {
-			ps = Connect.getInstance()
-					.prepareStatement("UPDATE Cotisation SET libelle_cotis=?, taux_cotis=? WHERE id_cotis=?");
+			ps = Connect
+					.getInstance()
+					.prepareStatement(
+							"UPDATE Cotisation SET libelle_cotis=?, taux_cotis=? WHERE id_cotis=?");
 			ps.setString(1, obj.getLibelle());
 			ps.setDouble(2, obj.getTaux());
 			ps.setInt(3, obj.getId());
@@ -88,5 +92,4 @@ public class MySQLCotisationDAO implements CotisationDAO {
 
 		return cot;
 	}
-	}
-
+}

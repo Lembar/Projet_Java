@@ -26,7 +26,7 @@ public class MySQLEmployeDAO implements EmployeDAO {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		try {
-			ps = (PreparedStatement) Connect.getInstance().prepareStatement(
+			ps = Connect.getInstance().prepareStatement(
 					"INSERT INTO Employe values (null,?,?)",
 					Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, obj.getNom());
@@ -61,7 +61,7 @@ public class MySQLEmployeDAO implements EmployeDAO {
 		PreparedStatement ps = null;
 		try {
 			ps = (PreparedStatement) Connect.getInstance().prepareStatement(
-					"UPDATE Employe SET =?, =? WHERE id_emp=?");
+					"UPDATE Employe SET nom=?, prenom=? WHERE id_emp=?");
 			ps.setString(1, obj.getNom());
 			ps.setString(2, obj.getPrenom());
 			ps.setInt(3, obj.getId());

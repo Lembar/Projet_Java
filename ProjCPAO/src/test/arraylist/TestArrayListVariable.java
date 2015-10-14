@@ -23,7 +23,8 @@ public class TestArrayListVariable {
 	public void testListeVariableCreation() {
 		Variable var = new Variable("a", "a");
 		ArrayListVariableDAO.getInstance().create(var);
-		assertTrue(ArrayListVariableDAO.getInstance().getVariable().contains(var));
+		assertTrue(ArrayListVariableDAO.getInstance().getVariable()
+				.contains(var));
 	}
 
 	@Test
@@ -31,7 +32,8 @@ public class TestArrayListVariable {
 		Variable var = new Variable("a", "a");
 		ArrayListVariableDAO.getInstance().create(var);
 		ArrayListVariableDAO.getInstance().delete(var);
-		assertFalse(ArrayListVariableDAO.getInstance().getVariable().contains(var));
+		assertFalse(ArrayListVariableDAO.getInstance().getVariable()
+				.contains(var));
 	}
 
 	@Test
@@ -54,7 +56,8 @@ public class TestArrayListVariable {
 		int id = ArrayListVariableDAO.getInstance().create(var);
 		var.setLibelle("b");
 		ArrayListVariableDAO.getInstance().update(var);
-		assertEquals("b", ArrayListVariableDAO.getInstance().getByID(id).getLibelle());
+		assertEquals("b", ArrayListVariableDAO.getInstance().getByID(id)
+				.getLibelle());
 	}
 
 	@Test
@@ -63,7 +66,8 @@ public class TestArrayListVariable {
 		int id = ArrayListVariableDAO.getInstance().create(var);
 		var.setType("c");
 		ArrayListVariableDAO.getInstance().update(var);
-		assertEquals("c", ArrayListVariableDAO.getInstance().getByID(id).getType());
+		assertEquals("c", ArrayListVariableDAO.getInstance().getByID(id)
+				.getType());
 	}
 
 }
