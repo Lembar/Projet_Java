@@ -1,7 +1,7 @@
 package dao.mysql;
 
 import java.sql.*;
-import com.mysql.jdbc.PreparedStatement;
+
 import modele.metier.Cotisation;
 import dao.CotisationDAO;
 
@@ -20,7 +20,7 @@ public class MySQLCotisationDAO implements CotisationDAO {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		try {
-			ps = (PreparedStatement) Connect.getInstance().prepareStatement("INSERT INTO Cotisation values (null,?,?)",
+			ps = Connect.getInstance().prepareStatement("INSERT INTO Cotisation values (null,?,?)",
 					Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, obj.getLibelle());
 			ps.setDouble(2, obj.getTaux());
@@ -41,7 +41,7 @@ public class MySQLCotisationDAO implements CotisationDAO {
 
 		PreparedStatement ps = null;
 		try {
-			ps = (PreparedStatement) Connect.getInstance().prepareStatement("DELETE FROM Cotisation WHERE id_cotis=?");
+			ps =  Connect.getInstance().prepareStatement("DELETE FROM Cotisation WHERE id_cotis=?");
 			ps.setInt(1, obj.getId());
 			ps.executeUpdate();
 		}
@@ -56,7 +56,7 @@ public class MySQLCotisationDAO implements CotisationDAO {
 
 		PreparedStatement ps = null;
 		try {
-			ps = (PreparedStatement) Connect.getInstance()
+			ps = Connect.getInstance()
 					.prepareStatement("UPDATE Cotisation SET libelle_cotis=?, taux_cotis=? WHERE id_cotis=?");
 			ps.setString(1, obj.getLibelle());
 			ps.setDouble(2, obj.getTaux());
@@ -71,12 +71,16 @@ public class MySQLCotisationDAO implements CotisationDAO {
 	public Cotisation getByID(int id) {
 
 		Cotisation cot = null;
+		PreparedStatement ps = null;
 		try {
-			ResultSet res = Connect.getInstance()
-					.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE)
-					.executeQuery("SELECT * FROM Cotisation WHERE id_cotis" + id);
-			if (res.next()) {
-				cot = new Cotisation(res.getInt(0), res.getString("libelle_cotis"), res.getDouble("taux_cotis"));
+			ps = Connect.getInstance().prepareStatement(
+					"SELECT * FROM Cotisation WHERE id_cotis=?");
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+				cot = new Cotisation(id, rs.getString("libelle_cotis"),
+						rs.getDouble("taux_cotis"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -84,5 +88,5 @@ public class MySQLCotisationDAO implements CotisationDAO {
 
 		return cot;
 	}
+	}
 
-}

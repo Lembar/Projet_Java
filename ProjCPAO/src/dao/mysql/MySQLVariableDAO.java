@@ -2,9 +2,6 @@ package dao.mysql;
 
 import java.sql.*;
 import java.util.ArrayList;
-
-import com.mysql.jdbc.PreparedStatement;
-
 import modele.metier.Variable;
 import dao.VariableDAO;
 
@@ -25,7 +22,8 @@ public class MySQLVariableDAO implements VariableDAO {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		try {
-			ps = (PreparedStatement) Connect.getInstance().prepareStatement("INSERT INTO Variable values (null,?,?)",
+			ps = (PreparedStatement) Connect.getInstance().prepareStatement(
+					"INSERT INTO Variable values (null,?,?)",
 					Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, obj.getLibelle());
 			ps.setString(2, obj.getType());
@@ -46,7 +44,8 @@ public class MySQLVariableDAO implements VariableDAO {
 
 		PreparedStatement ps = null;
 		try {
-			ps = (PreparedStatement) Connect.getInstance().prepareStatement("DELETE FROM Variable WHERE id_regle=?");
+			ps = (PreparedStatement) Connect.getInstance().prepareStatement(
+					"DELETE FROM Variable WHERE id_regle=?");
 			ps.setInt(1, obj.getId());
 			ps.executeUpdate();
 		}
@@ -61,8 +60,8 @@ public class MySQLVariableDAO implements VariableDAO {
 
 		PreparedStatement ps = null;
 		try {
-			ps = (PreparedStatement) Connect.getInstance()
-					.prepareStatement("UPDATE Variable SET libelle=?, type=? WHERE id_regle=?");
+			ps = Connect.getInstance().prepareStatement(
+					"UPDATE Variable SET libelle=?, type=? WHERE id_regle=?");
 			ps.setString(1, obj.getLibelle());
 			ps.setString(2, obj.getType());
 			ps.setInt(3, obj.getId());
@@ -78,12 +77,16 @@ public class MySQLVariableDAO implements VariableDAO {
 	public Variable getByID(int id) {
 
 		Variable var = null;
+		PreparedStatement ps = null;
 		try {
-			ResultSet res = Connect.getInstance()
-					.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE)
-					.executeQuery("SELECT * FROM Employe WHERE id_emp" + id);
-			if (res.next()) {
-				var = new Variable(res.getInt(0), res.getString("libele_var"), res.getString("type"));
+			ps = Connect.getInstance().prepareStatement(
+					"SELECT * FROM Employe WHERE id_emp=?");
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+				var = new Variable(id, rs.getString("libele_var"),
+						rs.getString("type"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
