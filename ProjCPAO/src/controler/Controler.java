@@ -9,14 +9,14 @@ import model.metier.Employe;
 public class Controler implements ActionListener {
 
 	private IVue vue;
-	private Employe model;
+	private Employe modele;
 
 	public void setVue(IVue vue) {
 		this.vue = vue;
 	}
 
-	public Employe getEmploye() {
-		return this.model;
+	public Employe getModele() {
+		return this.modele;
 	}
 
 	@Override
@@ -24,8 +24,9 @@ public class Controler implements ActionListener {
 		String str = ae.getActionCommand();
 
 		if (str.equals("OK")) {
-			this.model = new Employe(this.vue.getNomSaisi(),
-					this.vue.getPrenomSaisi());
+			this.modele = new Employe(this.vue.getIdSaisi(),
+									this.vue.getNomSaisi(),
+									this.vue.getPrenomSaisi());
 			this.vue.afficheModele();
 		}
 	}

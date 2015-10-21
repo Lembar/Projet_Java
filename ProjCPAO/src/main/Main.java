@@ -7,9 +7,9 @@ public class Main {
 
 	public static void main(String[] args) {
 		Controler ctrl= new Controler();
-		FenetreEmploye vueEmp = new FenetreEmploye(ctrl);
+		FenetreEmploye vueSwing = new FenetreEmploye(ctrl);
 		
-		ctrl.setVue(vueEmp);
+		ctrl.setVue(vueSwing);
 	}
 
 }
