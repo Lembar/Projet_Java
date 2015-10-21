@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import dao.arraylist.ArrayListRegleDAO;
-import modele.metier.Regle;
+import model.metier.Regle;
 
 public class TestArrayListRegle {
 

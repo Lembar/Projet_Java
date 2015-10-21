@@ -2,7 +2,8 @@ package dao.mysql;
 
 import java.sql.*;
 import java.util.ArrayList;
-import modele.metier.Variable;
+
+import model.metier.Variable;
 import dao.VariableDAO;
 
 public class MySQLVariableDAO implements VariableDAO {

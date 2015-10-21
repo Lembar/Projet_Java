@@ -1,8 +1,10 @@
 package test.mysql;
 
 import static org.junit.Assert.*;
-import modele.metier.Cotisation;
+import model.metier.Cotisation;
+
 import org.junit.Test;
+
 import dao.mysql.MySQLCotisationDAO;
 
 public class TestMYSQLCotisation {

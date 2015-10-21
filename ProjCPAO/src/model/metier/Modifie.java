@@ -1,4 +1,4 @@
-package modele.metier;
+package model.metier;
 
 public class Modifie {
 	private int idEmploye = 0;

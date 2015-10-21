@@ -1,7 +1,7 @@
 package test.mysql;
 
 import static org.junit.Assert.*;
-import modele.metier.Regle;
+import model.metier.Regle;
 
 import org.junit.Test;
 

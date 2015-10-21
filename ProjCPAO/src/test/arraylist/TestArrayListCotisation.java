@@ -8,7 +8,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import dao.arraylist.ArrayListCotisationDAO;
-import modele.metier.Cotisation;
+import model.metier.Cotisation;
 
 public class TestArrayListCotisation {
 

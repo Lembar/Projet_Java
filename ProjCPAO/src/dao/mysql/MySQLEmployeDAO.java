@@ -4,9 +4,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import modele.metier.Employe;
-import modele.metier.Regle;
-import modele.metier.Variable;
+import model.metier.Employe;
+import model.metier.Regle;
+import model.metier.Variable;
 import dao.EmployeDAO;
 
 public class MySQLEmployeDAO implements EmployeDAO {

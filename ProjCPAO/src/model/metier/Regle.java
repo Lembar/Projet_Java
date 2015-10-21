@@ -1,4 +1,4 @@
-package modele.metier;
+package model.metier;
 
 public class Regle {
 	private int id = 0;

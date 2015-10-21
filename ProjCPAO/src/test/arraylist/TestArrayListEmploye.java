@@ -3,8 +3,9 @@ package test.arraylist;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
 import dao.arraylist.ArrayListEmployeDAO;
-import modele.metier.Employe;
+import model.metier.Employe;
 
 public class TestArrayListEmploye {
 

@@ -1,7 +1,8 @@
 package dao.mysql;
 
 import java.sql.*;
-import modele.metier.Regle;
+
+import model.metier.Regle;
 import dao.RegleDAO;
 
 public class MySQLRegleDAO implements RegleDAO {

@@ -2,7 +2,7 @@ package dao.arraylist;
 
 import java.util.ArrayList;
 
-import modele.metier.Regle;
+import model.metier.Regle;
 import dao.RegleDAO;
 
 public class ArrayListRegleDAO implements RegleDAO {

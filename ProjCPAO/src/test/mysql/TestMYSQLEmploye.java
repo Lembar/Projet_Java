@@ -1,9 +1,10 @@
 package test.mysql;
 
 import static org.junit.Assert.*;
-import modele.metier.Employe;
+import model.metier.Employe;
 
 import org.junit.Test;
+
 import dao.mysql.MySQLEmployeDAO;
 
 public class TestMYSQLEmploye {

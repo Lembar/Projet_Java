@@ -2,7 +2,7 @@ package dao.arraylist;
 
 import java.util.ArrayList;
 
-import modele.metier.Variable;
+import model.metier.Variable;
 import dao.VariableDAO;
 
 public class ArrayListVariableDAO implements VariableDAO {

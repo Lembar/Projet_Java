@@ -1,6 +1,6 @@
 package dao;
 
-import modele.metier.Cotisation;
+import model.metier.Cotisation;
 
 public interface CotisationDAO extends Dao<Cotisation> {
 

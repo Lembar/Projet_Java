@@ -2,7 +2,7 @@ package dao.arraylist;
 
 import java.util.ArrayList;
 
-import modele.metier.Cotisation;
+import model.metier.Cotisation;
 import dao.CotisationDAO;
 
 public class ArrayListCotisationDAO implements CotisationDAO {

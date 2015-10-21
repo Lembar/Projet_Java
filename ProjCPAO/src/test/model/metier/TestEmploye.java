@@ -1,7 +1,7 @@
-package test.modele.metier;
+package test.model.metier;
 
 import static org.junit.Assert.*;
-import modele.metier.Employe;
+import model.metier.Employe;
 
 import org.junit.Test;
 

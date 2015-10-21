@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import dao.arraylist.ArrayListVariableDAO;
-import modele.metier.Variable;
+import model.metier.Variable;
 
 public class TestArrayListVariable {
 
