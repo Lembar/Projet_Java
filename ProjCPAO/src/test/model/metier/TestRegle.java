@@ -21,9 +21,9 @@ public class TestRegle {
 
 	@Test
 	public void testRegleSetId() {
-		Regle r1 = new Regle();
-		r1.setId(1);
-		assertEquals(1, r1.getId());
+		Regle regle = new Regle();
+		regle.setId(1);
+		assertEquals(1, regle.getId());
 	}
 
 	@Test
@@ -33,10 +33,24 @@ public class TestRegle {
 	}
 
 	@Test
-	public void testRegleSetCondition() {
-		Regle r3 = new Regle();
-		r3.setCondition("abc");
-		assertEquals("abc", r3.getCondition());
+	public void testRegleSetConditionChaine() {
+		Regle regle = new Regle();
+		regle.setCondition("abc");
+		assertEquals("abc", regle.getCondition());
+	}
+
+	@Test(expected=IllegalArgumentException.class)
+	public void testRegleSetConditionVide() {
+		Regle regle = new Regle();
+		regle.setCondition("");
+		assertEquals("", regle.getCondition());
+	}
+
+	@Test(expected=IllegalArgumentException.class)
+	public void testRegleSetConditionEspaces() {
+		Regle regle = new Regle();
+		regle.setCondition("     ");
+		assertEquals("     ", regle.getCondition());
 	}
 
 	@Test
@@ -46,11 +60,24 @@ public class TestRegle {
 	}
 
 	@Test
-	public void testRegleSetAction() {
-		Regle r3 = new Regle();
-		r3.setAction("abc");
-		assertEquals("abc", r3.getAction());
+	public void testRegleSetActionChaine() {
+		Regle regle = new Regle();
+		regle.setAction("abc");
+		assertEquals("abc", regle.getAction());
+	}
 
+	@Test(expected=IllegalArgumentException.class)
+	public void testRegleSetActionVide() {
+		Regle regle = new Regle();
+		regle.setAction("");
+		assertEquals("", regle.getAction());
+	}
+
+	@Test(expected=IllegalArgumentException.class)
+	public void testRegleSetActionEspaces() {
+		Regle regle = new Regle();
+		regle.setAction("     ");
+		assertEquals("     ", regle.getAction());
 	}
 
 	@Test
@@ -61,9 +88,9 @@ public class TestRegle {
 
 	@Test
 	public void testRegleSetActif() {
-		Regle r3 = new Regle();
-		r3.setActif(true);
-		assertEquals(true, r3.getActif());
+		Regle regle = new Regle();
+		regle.setActif(true);
+		assertEquals(true, regle.getActif());
 
 	}
 

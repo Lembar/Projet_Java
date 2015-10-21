@@ -21,9 +21,9 @@ public class TestVariable {
 
 	@Test
 	public void testVariableSetId() {
-		Variable v3 = new Variable();
-		v3.setId(1);
-		assertEquals(v3.getId(), 1);
+		Variable var = new Variable();
+		var.setId(1);
+		assertEquals(var.getId(), 1);
 	}
 
 	@Test
@@ -33,11 +33,24 @@ public class TestVariable {
 	}
 
 	@Test
-	public void testVariableSetLibelle() {
-		Variable v3 = new Variable();
-		v3.setLibelle("coucou");
-		assertEquals("coucou", v3.getLibelle());
+	public void testVariableSetLibelleChaine() {
+		Variable var = new Variable();
+		var.setLibelle("coucou");
+		assertEquals("coucou", var.getLibelle());
+	}
 
+	@Test(expected = IllegalArgumentException.class)
+	public void testVariableSetLibelleVide() {
+		Variable var = new Variable();
+		var.setLibelle("");
+		assertEquals("", var.getLibelle());
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testVariableSetLibelleEspaces() {
+		Variable var = new Variable();
+		var.setLibelle("      ");
+		assertEquals("      ", var.getLibelle());
 	}
 
 	@Test
@@ -47,10 +60,24 @@ public class TestVariable {
 	}
 
 	@Test
-	public void testVariableSetType() {
-		Variable v3 = new Variable();
-		v3.setType("aurevoir");
-		assertEquals("aurevoir", v3.getType());
+	public void testVariableSetTypeChaine() {
+		Variable var = new Variable();
+		var.setType("aurevoir");
+		assertEquals("aurevoir", var.getType());
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testVariableSetTypeVide() {
+		Variable var = new Variable();
+		var.setType("");
+		assertEquals("", var.getType());
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testVariableSetTypeEspaces() {
+		Variable var = new Variable();
+		var.setType("     ");
+		assertEquals("     ", var.getType());
 	}
 
 }

@@ -39,4 +39,25 @@ public class TestModifie {
 		mod.setIdVariable(2);
 		assertEquals(2, mod.getIdVariable());
 	}
+
+	@Test
+	public void testEmployeSetValurChaine() {
+		Modifie mod = new Modifie();
+		mod.setValeur("Toto");
+		assertEquals("Toto", mod.getValeur());
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testEmployeSetValeurVide() {
+		Modifie mod = new Modifie();
+		mod.setValeur("");
+		assertEquals("", mod.getValeur());
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testEmployeSetValeurEspaces() {
+		Modifie mod = new Modifie();
+		mod.setValeur("     ");
+		assertEquals("     ", mod.getValeur());
+	}
 }

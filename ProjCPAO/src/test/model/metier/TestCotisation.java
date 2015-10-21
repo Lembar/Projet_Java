@@ -22,9 +22,9 @@ public class TestCotisation {
 
 	@Test
 	public void testCotisationSetId() {
-		Cotisation c1 = new Cotisation();
-		c1.setId(2);
-		assertEquals(2, c1.getId());
+		Cotisation cot = new Cotisation();
+		cot.setId(2);
+		assertEquals(2, cot.getId());
 
 	}
 
@@ -34,10 +34,24 @@ public class TestCotisation {
 	}
 
 	@Test
-	public void testCotisationSetLibelle() {
-		Cotisation c1 = new Cotisation();
-		c1.setLibelle("titi");
-		assertEquals("titi", c1.getLibelle());
+	public void testCotisationSetLibelleChaine() {
+		Cotisation cot = new Cotisation();
+		cot.setLibelle("titi");
+		assertEquals("titi", cot.getLibelle());
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testCotisationSetLibelleVide() {
+		Cotisation cot = new Cotisation();
+		cot.setLibelle("");
+		assertEquals("", cot.getLibelle());
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testCotisationSetLibelleEspaces() {
+		Cotisation cot = new Cotisation();
+		cot.setLibelle("     ");
+		assertEquals("     ", cot.getLibelle());
 	}
 
 	@Test
@@ -47,9 +61,9 @@ public class TestCotisation {
 
 	@Test
 	public void testCotisationSetTaux() {
-		Cotisation c1 = new Cotisation();
-		c1.setTaux(40);
-		assertEquals(40, c1.getTaux(), 0);
+		Cotisation cot = new Cotisation();
+		cot.setTaux(40);
+		assertEquals(40, cot.getTaux(), 0);
 
 	}
 

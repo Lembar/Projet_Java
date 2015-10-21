@@ -37,7 +37,7 @@ public class Regle {
 		if ((condition != null) && (condition.trim().length() > 0)) {
 			this.condition = condition.trim();
 		} else
-			throw new IllegalArgumentException("Saisir une condition correct");
+			throw new IllegalArgumentException("Saisir une condition correcte");
 	}
 
 	public String getAction() {
@@ -48,7 +48,7 @@ public class Regle {
 		if ((action != null) && (action.trim().length() > 0)) {
 			this.action = action.trim();
 		} else
-			throw new IllegalArgumentException("Saisir une action correct");
+			throw new IllegalArgumentException("Saisir une action correcte");
 	}
 
 	public boolean getActif() {

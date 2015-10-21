@@ -21,9 +21,9 @@ public class TestEmploye {
 
 	@Test
 	public void testEmployeSetId() {
-		Employe e = new Employe();
-		e.setId(1);
-		assertEquals(1, e.getId());
+		Employe emp = new Employe();
+		emp.setId(1);
+		assertEquals(1, emp.getId());
 	}
 
 	@Test
@@ -32,10 +32,24 @@ public class TestEmploye {
 	}
 
 	@Test
-	public void testEmployeSetNom() {
-		Employe e = new Employe();
-		e.setNom("Toto");
-		assertEquals(e.getNom(), "Toto");
+	public void testEmployeSetNomChaine() {
+		Employe emp = new Employe();
+		emp.setNom("Toto");
+		assertEquals("Toto", emp.getNom());
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testEmployeSetNomVide() {
+		Employe emp = new Employe();
+		emp.setNom("");
+		assertEquals("", emp.getNom());
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testEmployeSetNomEspaces() {
+		Employe emp = new Employe();
+		emp.setNom("     ");
+		assertEquals("     ", emp.getNom());
 	}
 
 	@Test
@@ -44,10 +58,24 @@ public class TestEmploye {
 	}
 
 	@Test
-	public void testEmployeSetPrenom() {
-		Employe e = new Employe();
-		e.setPrenom("Toto");
-		assertEquals(e.getPrenom(), "Toto");
+	public void testEmployeSetPrenomChaine() {
+		Employe emp = new Employe();
+		emp.setPrenom("Toto");
+		assertEquals("Toto", emp.getPrenom());
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testEmployeSetPrenomVide() {
+		Employe emp = new Employe();
+		emp.setPrenom("");
+		assertEquals("", emp.getPrenom());
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testEmployeSetPrenomEspaces() {
+		Employe emp = new Employe();
+		emp.setPrenom("     ");
+		assertEquals("     ", emp.getPrenom());
 	}
 
 }
