@@ -1,10 +1,16 @@
 package vue;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.border.BevelBorder;
 
 import controler.Controler;
 
@@ -16,9 +22,10 @@ public class FenetreEmploye extends JFrame implements IVue {
 	private JTextField tRegle;
 	private JTextField tVariable;
 	private JLabel lObject;
+	private JLabel title;
 	private Controler monControleur;
 
-	private JPanel boutons;
+	private JPanel panBoutons;
 	private JPanel titre;
 	private JPanel principal;
 
@@ -32,25 +39,50 @@ public class FenetreEmploye extends JFrame implements IVue {
 		// Creation fenetre
 		this.setTitle("Ma première fenêtre Java");
 		this.setSize(1200, 800);
-
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
+		this.setResizable(false);
 
 		// ajout des panels sur la fenetre
-		//this.add(titre);
-		//this.add(principal);
-		this.add(boutons);
 		
+		//panel boutons
+		panBoutons = new JPanel();
+		panBoutons.setPreferredSize(new Dimension(100, 50));
+		panBoutons.setBorder(new javax.swing.border.BevelBorder(
+				BevelBorder.RAISED));
+		panBoutons.setBackground(Color.ORANGE);
+		
+		//panel titre
+		titre = new JPanel();
+		titre.setPreferredSize(new Dimension(100, 50));
+		titre.setBorder(new javax.swing.border.BevelBorder(
+				BevelBorder.RAISED));
+		titre.setBackground(Color.PINK);
+		
+		//panel principal
+		principal = new JPanel();
+		principal.setBackground(Color.yellow);
+		
+		
+		
+		this.add(titre, BorderLayout.NORTH);
+		this.add(panBoutons, BorderLayout.SOUTH);		
+		this.add(principal,BorderLayout.CENTER);		
+
 		// ajout button
-		ajoute= new JButton("Ajouter");
-		modifie= new JButton("Modifier");
-		supprime= new JButton("Supprimer");
-		valider= new JButton("Valider");
-		boutons.add(ajoute);
-		boutons.add(modifie);
-		boutons.add(supprime);
-		boutons.add(valider);
+		ajoute = new JButton("Ajouter");
+		modifie = new JButton("Modifier");
+		supprime = new JButton("Supprimer");
+		valider = new JButton("Valider");
+
+		panBoutons.add(ajoute);
+		panBoutons.add(modifie);
+		panBoutons.add(supprime);
+		panBoutons.add(valider);
+		 
+
+
 	}
 
 	@Override
