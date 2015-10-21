@@ -2,7 +2,7 @@ package vue;
 
 public interface IVue {
 
-	public void AfficheModele();
+	public void afficheModele();
 	public String getNomSaisi();
 	public String getPrenomSaisi();
 }

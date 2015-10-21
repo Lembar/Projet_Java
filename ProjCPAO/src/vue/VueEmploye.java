@@ -35,7 +35,7 @@ public class VueEmploye extends JFrame implements IVue {
 	  }
 
 	@Override
-	public void AfficheModele() {
+	public void afficheModele() {
 		
 	}
 }
