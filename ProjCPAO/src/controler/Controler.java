@@ -3,15 +3,17 @@ package controler;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+
 import panels.EmployeModele;
 import utils.DefaultValues;
 import vue.FenetreEmploye;
-import vue.IVue;
 import model.metier.Employe;
 
-public class Controler implements ActionListener {
+public class Controler implements ActionListener, ListSelectionListener {
 
-	private IVue vue;
+	private FenetreEmploye vue;
 	private Employe modele;
 	private EmployeModele listeEmployes;
 	
@@ -19,7 +21,7 @@ public class Controler implements ActionListener {
 		listeEmployes = new EmployeModele(DefaultValues.getDefaultFactory().getEmployeDAO().findAll());
 	}
 	
-	public void setVue(IVue vue) {
+	public void setVue(FenetreEmploye vue) {
 		this.vue = vue;
 	}
 
@@ -36,17 +38,37 @@ public class Controler implements ActionListener {
 	public void actionPerformed(ActionEvent ae) {
 		switch(ae.getActionCommand()){
 		case "Ajouter":
-			FenetreEmploye.affichePanelAjout();
+			System.out.println("Click ajouter");
+			this.vue.affichePanelAjout();
 			break;
 		case "Modifier":
-			FenetreEmploye.affichePanelModifie();
+			System.out.println("Click modifier");
+			int i = this.vue.ligneSelect();
+			this.vue.getValeur(i);
+			this.vue.activeBouton(true);
+			this.vue.affichePanelModifie();
+			
 			break;
 		case "Supprimer":
 			System.out.println("Click supprimer");
+			this.vue.supprimeEmploye();
 			break;
 		case "Valider":
 			System.out.println("Click valider");
+			this.vue.valideAjoutEmploye();
+			this.vue.valideModificationEmploye();
 			break;
+		}
+	}
+	
+	@Override
+	public void valueChanged(ListSelectionEvent e) {
+		
+		if (e.getValueIsAdjusting()) return;
+		if (e.getFirstIndex()==1 && e.getLastIndex()==-1) {
+			this.vue.activeBouton(false);
+		} else { 
+			this.vue.activeBouton(true);
 		}
 	}
 }
