@@ -12,14 +12,12 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.border.BevelBorder;
 
 import utils.DefaultValues;
 import model.metier.Employe;
-import modele.EmployeModele;
 import controler.Controler;
-import dao.factory.DAOFactory;
-import dao.factory.Persistance;
 
 public class FenetreEmploye extends JFrame implements IVue {
 
@@ -36,14 +34,14 @@ public class FenetreEmploye extends JFrame implements IVue {
 	private JPanel panelBoutons;
 	private JPanel panelTitre;
 	private JPanel panelPrincipal;
-	private static JPanel panelAjout;
-	private static JPanel panelModifie;
+	private JPanel panelAjout;
+	private JPanel panelModifie;
 
 	private JButton btnValider;
 	private JButton btnModifie;
 	private JButton btnSupprime;
 	private JButton btnAjoute;
-	
+
 	private JTable table;
 
 	public FenetreEmploye(Controler ctrl) {
@@ -72,6 +70,10 @@ public class FenetreEmploye extends JFrame implements IVue {
 
 		// table /////////////////////////////////////////////////////////////
 		table = new JTable(ctrl.getListeEmployes());
+		ListSelectionModel listSelectionModel = table.getSelectionModel();
+		listSelectionModel.addListSelectionListener(ctrl);
+		table.setSelectionModel(listSelectionModel);
+
 		JScrollPane jsp = new JScrollPane(table);
 		panelPrincipal.add(jsp);
 
@@ -87,7 +89,7 @@ public class FenetreEmploye extends JFrame implements IVue {
 		tNom = new JTextField();
 		tPrenom = new JTextField();
 		lNom = new JLabel("Nom:");
-		lPrenom = new JLabel("Prénom:");
+		lPrenom = new JLabel("PrÃ©nom:");
 
 		panelAjout.setLayout(null);
 		lNom.setBounds(10, 70, 50, 25);
@@ -116,7 +118,7 @@ public class FenetreEmploye extends JFrame implements IVue {
 		tNom = new JTextField();
 		tPrenom = new JTextField();
 		lNom = new JLabel("Nom:");
-		lPrenom = new JLabel("Prénom:");
+		lPrenom = new JLabel("PrÃ©nom:");
 
 		panelModifie.setLayout(null);
 		lNom.setBounds(10, 70, 50, 25);
@@ -133,8 +135,7 @@ public class FenetreEmploye extends JFrame implements IVue {
 		panelPrincipal.add(panelModifie);
 		panelModifie.setVisible(false);
 
-		// ajout panel sur la
-		// fenetre//////////////////////////////////////////////////////
+		// ajout panel sur la fenetre//////////////////////////////////////////////////////
 		this.add(panelTitre, BorderLayout.NORTH);
 		this.add(panelBoutons, BorderLayout.SOUTH);
 		this.add(panelPrincipal, BorderLayout.CENTER);
@@ -168,14 +169,19 @@ public class FenetreEmploye extends JFrame implements IVue {
 		this.setVisible(true);
 	}
 
-	public static void affichePanelAjout() {
+	public void affichePanelAjout() {
 		panelAjout.setVisible(true);
 		panelModifie.setVisible(false);
 	}
 
-	public static void affichePanelModifie() {
+
+	public void affichePanelModifie() {
 		panelModifie.setVisible(true);
 		panelAjout.setVisible(false);
+	}
+
+	public int ligneSelect() {
+		return table.getSelectedRow();
 	}
 
 	@Override
@@ -192,21 +198,36 @@ public class FenetreEmploye extends JFrame implements IVue {
 	public void afficheModele() {
 		this.lObject.setText(this.monControleur.getModele().toString());
 	}
-	
-	public void valideAjoutEmploye(){
-		Employe emp = new Employe(getNomSaisi(),getPrenomSaisi());
+
+	public void activeBouton(boolean a) {
+		this.btnModifie.setEnabled(a);
+		this.btnSupprime.setEnabled(a);
+
+	}
+
+	public void getValeur(int i) {
+		tNom.setText((String) (table.getValueAt(i, 0)));
+		tPrenom.setText((String) (table.getValueAt(i, 1)));
+	}
+
+	public void valideAjoutEmploye() {
+		Employe emp = new Employe(getNomSaisi(), getPrenomSaisi());
 		DefaultValues.getDefaultFactory().getEmployeDAO().create(emp);
 		monControleur.getListeEmployes().addRow(emp);
 	}
-	
-	public void valideModificationEmploye(){
-		DefaultValues.getDefaultFactory().getEmployeDAO().update();
-	}
 
-	public void supprimeEmploye() {
-		if (table.getSelectedRow() != -1) {
-			EmployeModele.COLONNES.removeRow(table.getSelectedRow());
-		}
+	public void valideModificationEmploye() {
+		Employe emp = monControleur.getListeEmployes().getEmploye(
+				table.getSelectedRow());
+		emp.setNom(getNomSaisi());
+		emp.setPrenom(getPrenomSaisi());
+		DefaultValues.getDefaultFactory().getEmployeDAO().update(emp);
+
 	}
+	
+    public void supprimeEmploye() {
+        Employe emp = monControleur.getListeEmployes().getEmploye(table.getSelectedRow());
+        DefaultValues.getDefaultFactory().getEmployeDAO().delete(emp);
+}
 
 }
