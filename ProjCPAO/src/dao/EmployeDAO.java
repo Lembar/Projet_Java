@@ -13,4 +13,6 @@ public interface EmployeDAO extends Dao<Employe> {
 
 	public HashMap<Variable, String> getHm(int id);
 
+	ArrayList<Employe> findAll();
+
 }

@@ -138,4 +138,27 @@ public class MySQLEmployeDAO implements EmployeDAO {
 		}
 		return map;
 	}
+
+	@Override
+	public ArrayList<Employe> findAll() {
+
+		ArrayList<Employe> liste = new ArrayList<Employe>();
+		Employe emp = null;
+		PreparedStatement ps = null;
+
+		try {
+			ps = Connect.getInstance().prepareStatement(
+					"SELECT * FROM EMPLOYE order by nom_emp, prenom_emp");
+
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				emp = new Employe(rs.getInt("id"), rs.getString("nom"),
+						rs.getString("prenom"));
+				liste.add(emp);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return liste;
+	}
 }
