@@ -21,8 +21,10 @@ import controler.Controler;
 
 public class FenetreEmploye extends JFrame implements IVue {
 
-	private JTextField tNom;
-	private JTextField tPrenom;
+	private JTextField tNomAjout;
+	private JTextField tPrenomAjout;
+	private JTextField tNomModif;
+	private JTextField tPrenomModif;
 
 	private JLabel lObject;
 	private JLabel lTitle;
@@ -53,22 +55,23 @@ public class FenetreEmploye extends JFrame implements IVue {
 		panelBoutons.setPreferredSize(new Dimension(100, 50));
 		panelBoutons.setBorder(new javax.swing.border.BevelBorder(
 				BevelBorder.RAISED));
-		panelBoutons.setBackground(Color.ORANGE);
+		panelBoutons.setBackground(Color.BLACK);
 
 		// panel titre //////////////////////////////////////////////////////
 		panelTitre = new JPanel();
 		panelTitre.setPreferredSize(new Dimension(100, 50));
 		panelTitre.setBorder(new javax.swing.border.BevelBorder(
 				BevelBorder.RAISED));
-		panelTitre.setBackground(Color.PINK);
+		panelTitre.setBackground(Color.BLACK);
 		Font fon = new Font("Arial", Font.BOLD, 35);
 		lTitle = new JLabel("Bienvenue");
 		lTitle.setFont(fon);
+		lTitle.setForeground(Color.white);
 		panelTitre.add(lTitle);
 
 		// panel principal //////////////////////////////////////////////////
 		panelPrincipal = new JPanel();
-		panelPrincipal.setBackground(Color.yellow);
+		panelPrincipal.setBackground(Color.gray);
 
 		// table /////////////////////////////////////////////////////////////
 		table = new JTable(ctrl.getListeEmployes());
@@ -86,10 +89,10 @@ public class FenetreEmploye extends JFrame implements IVue {
 		panelAjout.setPreferredSize(new Dimension(200, 150));
 		panelAjout.setBorder(new javax.swing.border.BevelBorder(
 				BevelBorder.RAISED));
-		panelAjout.setBackground(Color.GREEN);
+		panelAjout.setBackground(Color.white);
 
-		tNom = new JTextField();
-		tPrenom = new JTextField();
+		tNomAjout = new JTextField();
+		tPrenomAjout = new JTextField();
 		lNom = new JLabel("Nom:");
 		lPrenom = new JLabel("Prénom:");
 
@@ -98,10 +101,10 @@ public class FenetreEmploye extends JFrame implements IVue {
 		panelAjout.add(lNom);
 		lPrenom.setBounds(10, 40, 50, 25);
 		panelAjout.add(lPrenom);
-		tNom.setBounds(65, 40, 120, 25);
-		panelAjout.add(tNom);
-		tPrenom.setBounds(65, 70, 120, 25);
-		panelAjout.add(tPrenom);
+		tNomAjout.setBounds(65, 40, 120, 25);
+		panelAjout.add(tNomAjout);
+		tPrenomAjout.setBounds(65, 70, 120, 25);
+		panelAjout.add(tPrenomAjout);
 		btnValiderAjout.setBounds(58, 110, 90, 25);
 		panelAjout.add(btnValiderAjout);
 
@@ -115,10 +118,10 @@ public class FenetreEmploye extends JFrame implements IVue {
 		panelModifie.setPreferredSize(new Dimension(200, 150));
 		panelModifie.setBorder(new javax.swing.border.BevelBorder(
 				BevelBorder.RAISED));
-		panelModifie.setBackground(Color.RED);
+		panelModifie.setBackground(Color.white);
 
-		tNom = new JTextField();
-		tPrenom = new JTextField();
+		tNomModif = new JTextField();
+		tPrenomModif = new JTextField();
 		lNom = new JLabel("Nom:");
 		lPrenom = new JLabel("Prénom:");
 
@@ -127,10 +130,10 @@ public class FenetreEmploye extends JFrame implements IVue {
 		panelModifie.add(lNom);
 		lPrenom.setBounds(10, 40, 50, 25);
 		panelModifie.add(lPrenom);
-		tNom.setBounds(65, 40, 120, 25);
-		panelModifie.add(tNom);
-		tPrenom.setBounds(65, 70, 120, 25);
-		panelModifie.add(tPrenom);
+		tNomModif.setBounds(65, 40, 120, 25);
+		panelModifie.add(tNomModif);
+		tPrenomModif.setBounds(65, 70, 120, 25);
+		panelModifie.add(tPrenomModif);
 		btnValiderModif.setBounds(58, 110, 90, 25);
 		panelModifie.add(btnValiderModif);
 
@@ -176,6 +179,10 @@ public class FenetreEmploye extends JFrame implements IVue {
 		panelAjout.setVisible(true);
 		panelModifie.setVisible(false);
 	}
+	
+	public void invisiblePanelAjout() {
+		panelAjout.setVisible(false);
+	}
 
 
 	public void affichePanelModifie() {
@@ -183,18 +190,22 @@ public class FenetreEmploye extends JFrame implements IVue {
 		panelAjout.setVisible(false);
 	}
 
+	public void invisiblePanelModif() {
+		panelModifie.setVisible(false);
+	}
+	
 	public int ligneSelect() {
 		return table.getSelectedRow();
 	}
 
 	@Override
 	public String getNomSaisi() {
-		return this.tNom.getText().trim();
+		return this.tNomAjout.getText().trim();
 	}
 
 	@Override
 	public String getPrenomSaisi() {
-		return this.tPrenom.getText().trim();
+		return this.tPrenomAjout.getText().trim();
 	}
 
 	@Override
@@ -209,28 +220,28 @@ public class FenetreEmploye extends JFrame implements IVue {
 	}
 
 	public void getValeur(int i) {
-		tNom.setText((String) (table.getValueAt(i, 0)));
-		tPrenom.setText((String) (table.getValueAt(i, 1)));
+		tNomAjout.setText((String) (table.getValueAt(i, 0)));
+		tPrenomAjout.setText((String) (table.getValueAt(i, 1)));
 	}
 
-	public void valideAjoutEmploye() {
-		Employe emp = new Employe(getNomSaisi(), getPrenomSaisi());
-		DefaultValues.getDefaultFactory().getEmployeDAO().create(emp);
-		monControleur.getListeEmployes().addRow(emp);
-	}
-
-	public void valideModificationEmploye() {
-		Employe emp = monControleur.getListeEmployes().getEmploye(
-				table.getSelectedRow());
-		emp.setNom(getNomSaisi());
-		emp.setPrenom(getPrenomSaisi());
-		DefaultValues.getDefaultFactory().getEmployeDAO().update(emp);
-
-	}
-	
-    public void supprimeEmploye() {
-        Employe emp = monControleur.getListeEmployes().getEmploye(table.getSelectedRow());
-        DefaultValues.getDefaultFactory().getEmployeDAO().delete(emp);
-}
+//	public void valideAjoutEmploye() {
+//		Employe emp = new Employe(getNomSaisi(), getPrenomSaisi());
+//		DefaultValues.getDefaultFactory().getEmployeDAO().create(emp);
+//		monControleur.getListeEmployes().addRow(emp);
+//	}
+//
+//	public void valideModificationEmploye() {
+//		Employe emp = monControleur.getListeEmployes().getEmploye(
+//				table.getSelectedRow());
+//		emp.setNom(getNomSaisi());
+//		emp.setPrenom(getPrenomSaisi());
+//		DefaultValues.getDefaultFactory().getEmployeDAO().update(emp);
+//
+//	}
+//	
+//    public void supprimeEmploye() {
+//        Employe emp = monControleur.getListeEmployes().getEmploye(table.getSelectedRow());
+//        DefaultValues.getDefaultFactory().getEmployeDAO().delete(emp);
+//}
 
 }

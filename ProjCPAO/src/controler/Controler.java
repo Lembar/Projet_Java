@@ -51,16 +51,25 @@ public class Controler implements ActionListener, ListSelectionListener {
 			break;
 		case "Supprimer":
 			System.out.println("Click supprimer");
-			this.vue.supprimeEmploye();
+			int b = this.vue.ligneSelect();
+			this.listeEmployes.deleteRow(b);
+			this.modele=this.listeEmployes.getEmploye(b);
+			
+			DefaultValues.getDefaultFactory().getEmployeDAO().delete(modele);
 			break;
 		case "Valider":
 			System.out.println("Click valider");
-			this.vue.valideAjoutEmploye();
+			this.modele = new Employe(this.vue.getNomSaisi(),this.vue.getPrenomSaisi());
+			this.listeEmployes.addRow(modele);
+			DefaultValues.getDefaultFactory().getEmployeDAO().create(modele);
+			
+			this.vue.invisiblePanelAjout();
 			
 			break;
 		case "OK":
 			System.out.println("Click ok");
-			this.vue.valideModificationEmploye();
+		//	this.vue.valideModificationEmploye();
+			this.vue.invisiblePanelModif();
 		}
 	}
 	

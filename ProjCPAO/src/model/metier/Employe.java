@@ -3,7 +3,7 @@ package model.metier;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Employe {
+public class Employe implements Comparable<Employe> {
 	private int id = 0;
 	private String nom = "";
 	private String prenom = "";
@@ -76,6 +76,15 @@ public class Employe {
 	@Override
 	public String toString() {
 		return "Employe [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", regle=" + regle + ", hm=" + hm + "]";
+	}
+
+	@Override
+	public int compareTo(Employe e) {
+		
+		if (nom.equals(e.nom)){
+			return prenom.compareTo(e.prenom);
+		}
+		return nom.compareTo(e.prenom);
 	}
 
 }
