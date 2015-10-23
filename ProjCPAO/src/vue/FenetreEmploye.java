@@ -94,7 +94,7 @@ public class FenetreEmploye extends JFrame implements IVue {
 		tNomAjout = new JTextField();
 		tPrenomAjout = new JTextField();
 		lNom = new JLabel("Nom:");
-		lPrenom = new JLabel("Prénom:");
+		lPrenom = new JLabel("Prenom:");
 
 		panelAjout.setLayout(null);
 		lNom.setBounds(10, 70, 50, 25);
@@ -123,7 +123,7 @@ public class FenetreEmploye extends JFrame implements IVue {
 		tNomModif = new JTextField();
 		tPrenomModif = new JTextField();
 		lNom = new JLabel("Nom:");
-		lPrenom = new JLabel("Prénom:");
+		lPrenom = new JLabel("Prenom:");
 
 		panelModifie.setLayout(null);
 		lNom.setBounds(10, 70, 50, 25);
@@ -202,10 +202,20 @@ public class FenetreEmploye extends JFrame implements IVue {
 	public String getNomSaisi() {
 		return this.tNomAjout.getText().trim();
 	}
-
+	
+	@Override
+	public String getNomSaisiModif() {
+		return this.tNomModif.getText().trim();
+	}
+	
 	@Override
 	public String getPrenomSaisi() {
 		return this.tPrenomAjout.getText().trim();
+	}
+	
+	@Override
+	public String getPrenomSaisiModif() {
+		return this.tPrenomModif.getText().trim();
 	}
 
 	@Override
@@ -220,8 +230,9 @@ public class FenetreEmploye extends JFrame implements IVue {
 	}
 
 	public void getValeur(int i) {
-		tNomAjout.setText((String) (table.getValueAt(i, 0)));
-		tPrenomAjout.setText((String) (table.getValueAt(i, 1)));
+		tNomModif.setText((String) (table.getValueAt(i, 0)));
+		tPrenomModif.setText((String) (table.getValueAt(i, 1)));
+
 	}
 
 //	public void valideModificationEmploye() {

@@ -11,7 +11,7 @@ public class EmployeModele extends AbstractTableModel {
 
 	private ArrayList<Employe> listeEmp;
 
-	private final String[] COLONNES = { "Nom", "Prénom" };
+	private final String[] COLONNES = { "Prenom", "Nom" };
 
 	public EmployeModele(ArrayList<Employe> arrayList) {
 		this.listeEmp = arrayList;

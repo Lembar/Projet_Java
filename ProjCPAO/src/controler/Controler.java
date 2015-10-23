@@ -41,14 +41,15 @@ public class Controler implements ActionListener, ListSelectionListener {
 			System.out.println("Click ajouter");
 			this.vue.affichePanelAjout();
 			break;
-		case "Modifier":
-			System.out.println("Click modifier");
-			int i = this.vue.ligneSelect();
-			this.vue.getValeur(i);
-			this.vue.activeBouton(true);
-			this.vue.affichePanelModifie();
 			
+		case "Modifier":
+			System.out.println("Click modifier");	
+			int i = this.vue.ligneSelect();
+			this.vue.getValeur(i);	
+			this.vue.activeBouton(true);
+			this.vue.affichePanelModifie();		
 			break;
+			
 		case "Supprimer":
 			System.out.println("Click supprimer");
 			int b = this.vue.ligneSelect();			
@@ -56,18 +57,22 @@ public class Controler implements ActionListener, ListSelectionListener {
 			this.listeEmployes.deleteRow(b);	
 			DefaultValues.getDefaultFactory().getEmployeDAO().delete(modele);
 			break;
+			
 		case "Valider":
 			System.out.println("Click valider");
 			this.modele = new Employe(this.vue.getNomSaisi(),this.vue.getPrenomSaisi());
 			this.listeEmployes.addRow(modele);
-			DefaultValues.getDefaultFactory().getEmployeDAO().create(modele);
-			
-			this.vue.invisiblePanelAjout();
-			
+			DefaultValues.getDefaultFactory().getEmployeDAO().create(modele);			
+			this.vue.invisiblePanelAjout();			
 			break;
+			
 		case "OK":
 			System.out.println("Click ok");
-		//	this.vue.valideModificationEmploye();
+			int c = this.vue.ligneSelect();	
+			this.modele=this.listeEmployes.getEmploye(c);
+			modele.setNom(this.vue.getNomSaisiModif()); 			
+			modele.setPrenom(this.vue.getPrenomSaisiModif()); 											
+			DefaultValues.getDefaultFactory().getEmployeDAO().update(modele);
 			this.vue.invisiblePanelModif();
 		}
 	}
