@@ -3,7 +3,7 @@ package panels;
 import java.util.ArrayList;
 
 import javax.swing.table.AbstractTableModel;
-import javax.swing.table.DefaultTableModel;
+
 
 import model.metier.Employe;
 
@@ -11,7 +11,7 @@ public class EmployeModele extends AbstractTableModel {
 
 	private ArrayList<Employe> listeEmp;
 
-	private final String[] COLONNES = { "Nom", "Prénom" };
+	private final String[] COLONNES = { "Nom", "PrÃ©nom" };
 
 	public EmployeModele(ArrayList<Employe> arrayList) {
 		this.listeEmp = arrayList;
@@ -45,13 +45,17 @@ public class EmployeModele extends AbstractTableModel {
 		}
 		return obj;
 	}
+	
+
+
+    public Employe getEmploye(int index){
+            return listeEmp.get(index);
+    }
 
 	public void addRow(Employe emp) {
 
 		this.listeEmp.add(emp);
 	//	Collections.sort(this.listeEmp);
-
-		this.fireTableDataChanged();
-	}
-
+        this.fireTableDataChanged();
+}
 }
