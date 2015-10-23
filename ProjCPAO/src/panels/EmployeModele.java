@@ -21,6 +21,11 @@ public class EmployeModele extends AbstractTableModel {
 	}
 
 	@Override
+	public String getColumnName(int c) {
+		return this.COLONNES[c];
+	}
+	
+	@Override
 	public int getRowCount() {
 		return this.listeEmp.size();
 	}
@@ -31,10 +36,10 @@ public class EmployeModele extends AbstractTableModel {
 		Object obj = null;
 		switch (columnIndex) {
 		case 0:
-			obj = emp.getPrenom();
+			obj = emp.getNom();
 			break;
 		case 1:
-			obj = emp.getNom();
+			obj = emp.getPrenom();
 		}
 		return obj;
 	}

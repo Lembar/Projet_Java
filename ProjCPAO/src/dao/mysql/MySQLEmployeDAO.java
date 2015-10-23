@@ -148,11 +148,11 @@ public class MySQLEmployeDAO implements EmployeDAO {
 
 		try {
 			ps = Connect.getInstance().prepareStatement(
-					"SELECT * FROM EMPLOYE order by nom, prenom");
+					"SELECT * FROM Employe order by nom, prenom");
 
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				emp = new Employe(rs.getInt("id"), rs.getString("nom"),
+				emp = new Employe(rs.getInt("id_emp"), rs.getString("nom"),
 						rs.getString("prenom"));
 				liste.add(emp);
 			}
