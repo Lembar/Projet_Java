@@ -3,8 +3,7 @@ package vue;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-
-import javax.swing.BorderFactory;
+import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -14,82 +13,147 @@ import javax.swing.border.BevelBorder;
 
 import controler.Controler;
 
-public class FenetreEmploye extends JFrame implements IVue {
+public class FenetreEmploye extends JFrame implements IVue  {
 
-	private JTextField tId;
+
 	private JTextField tNom;
 	private JTextField tPrenom;
-	private JTextField tRegle;
-	private JTextField tVariable;
+	
 	private JLabel lObject;
-	private JLabel title;
+	private JLabel lTitle;
+	private JLabel lNom;
+	private JLabel lPrenom;
+	
+	
 	private Controler monControleur;
 
-	private JPanel panBoutons;
-	private JPanel titre;
-	private JPanel principal;
+	private JPanel panelBoutons;
+	private JPanel panelTitre;
+	private JPanel panelPrincipal;
+	private JPanel panelAjout;
+	private JPanel panelModifie;
 
-	private JButton valider;
-	private JButton modifie;
-	private JButton supprime;
-	private JButton ajoute;
+	private JButton btnValider;
+	private JButton btnModifie;
+	private JButton btnSupprime;
+	private JButton btnAjoute;
+	
 
 	public FenetreEmploye(Controler ctrl) {
 
-		// Creation fenetre
-		this.setTitle("Ma première fenêtre Java");
-		this.setSize(1200, 800);
-		this.setLocationRelativeTo(null);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setVisible(true);
-		this.setResizable(false);
+		
+		
 
-		// ajout des panels sur la fenetre
 		
 		//panel boutons
-		panBoutons = new JPanel();
-		panBoutons.setPreferredSize(new Dimension(100, 50));
-		panBoutons.setBorder(new javax.swing.border.BevelBorder(
+		panelBoutons = new JPanel();
+		panelBoutons.setPreferredSize(new Dimension(100, 50));
+		panelBoutons.setBorder(new javax.swing.border.BevelBorder(
 				BevelBorder.RAISED));
-		panBoutons.setBackground(Color.ORANGE);
+		panelBoutons.setBackground(Color.ORANGE);
 		
 		//panel titre
-		titre = new JPanel();
-		titre.setPreferredSize(new Dimension(100, 50));
-		titre.setBorder(new javax.swing.border.BevelBorder(
+		panelTitre = new JPanel();
+		panelTitre.setPreferredSize(new Dimension(100, 50));
+		panelTitre.setBorder(new javax.swing.border.BevelBorder(
 				BevelBorder.RAISED));
-		titre.setBackground(Color.PINK);
+		panelTitre.setBackground(Color.PINK);
+		Font fon = new Font("Arial", Font.BOLD,35);
+		lTitle = new JLabel("Bienvenue");
+		lTitle.setFont(fon);
+		panelTitre.add(lTitle);
+		
+		
 		
 		//panel principal
-		principal = new JPanel();
-		principal.setBackground(Color.yellow);
+		panelPrincipal = new JPanel();
+		panelPrincipal.setBackground(Color.yellow);
 		
 		
+		//panel ajout
+		panelAjout =  new JPanel();
+		btnValider = new JButton("Valider");
+		panelAjout.setPreferredSize(new Dimension(200,150));
+		panelAjout.setBorder(new javax.swing.border.BevelBorder(
+				BevelBorder.RAISED));
+		panelAjout.setBackground(Color.GREEN);
+		tNom = new JTextField();
+		tPrenom = new JTextField(); 
+		lNom = new JLabel("Nom:"); 
+		lPrenom = new JLabel("Prénom:"); 
 		
-		this.add(titre, BorderLayout.NORTH);
-		this.add(panBoutons, BorderLayout.SOUTH);		
-		this.add(principal,BorderLayout.CENTER);		
+		panelAjout.setLayout(null);
+		lNom.setBounds(10,70,50,25);
+		panelAjout.add(lNom);
+		lPrenom.setBounds(10,40,50,25);
+		panelAjout.add(lPrenom);		
+		tNom.setBounds(65, 40, 120, 25);
+		panelAjout.add(tNom);
+		tPrenom.setBounds(65, 70, 120, 25);
+		panelAjout.add(tPrenom);	
+		btnValider.setBounds(58, 110, 90, 25);
+		panelAjout.add(btnValider);
+		
+		panelPrincipal.add(panelAjout);
+		panelAjout.setVisible(false);
+		
+		//panel modifier
+		panelModifie =  new JPanel();
+		btnValider = new JButton("Valider");
+		panelModifie.setPreferredSize(new Dimension(200,150));
+		panelModifie.setBorder(new javax.swing.border.BevelBorder(
+				BevelBorder.RAISED));
+		panelModifie.setBackground(Color.RED);
+		
+		tNom = new JTextField();
+		tPrenom = new JTextField(); 
+		lNom = new JLabel("Nom:"); 
+		lPrenom = new JLabel("Prénom:"); 
+		
+		panelModifie.setLayout(null);
+		lNom.setBounds(10,70,50,25);
+		panelModifie.add(lNom);
+		lPrenom.setBounds(10,40,50,25);
+		panelModifie.add(lPrenom);		
+		tNom.setBounds(65, 40, 120, 25);
+		panelModifie.add(tNom);
+		tPrenom.setBounds(65, 70, 120, 25);
+		panelModifie.add(tPrenom);	
+		btnValider.setBounds(58, 110, 90, 25);
+		panelModifie.add(btnValider);
+		
+		panelPrincipal.add(panelModifie);
+		panelModifie.setVisible(true);
+		
+		//ajout panel sur la fenetre
+		this.add(panelTitre, BorderLayout.NORTH);
+		this.add(panelBoutons, BorderLayout.SOUTH);		
+		this.add(panelPrincipal,BorderLayout.CENTER);		
 
+		
 		// ajout button
-		ajoute = new JButton("Ajouter");
-		modifie = new JButton("Modifier");
-		supprime = new JButton("Supprimer");
-		valider = new JButton("Valider");
+		btnAjoute = new JButton("Ajouter");
+		btnModifie = new JButton("Modifier");
+		btnSupprime = new JButton("Supprimer");
+		
 
-		panBoutons.add(ajoute);
-		panBoutons.add(modifie);
-		panBoutons.add(supprime);
-		panBoutons.add(valider);
-		 
-
-
+		panelBoutons.add(btnAjoute);
+		panelBoutons.add(btnModifie);
+		panelBoutons.add(btnSupprime);
+		
+		
+		btnAjoute.addActionListener(ctrl);
+		//this.pack();
+		
+		// Creation fenetre
+		this.setTitle("Java");
+		this.setSize(1200, 800);
+		this.setLocationRelativeTo(null);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
+		this.setResizable(false);
+		this.setVisible(true);
 	}
-
-	@Override
-	public int getIdSaisi() {
-		int i = Integer.parseInt(this.tId.getText().trim());
-		return i;
-	}
+ 
 
 	@Override
 	public String getNomSaisi() {
@@ -100,7 +164,7 @@ public class FenetreEmploye extends JFrame implements IVue {
 	public String getPrenomSaisi() {
 		return this.tPrenom.getText().trim();
 	}
-
+/*
 	@Override
 	public String getRegleSaisie() {
 		return this.tRegle.getText().trim();
@@ -110,10 +174,10 @@ public class FenetreEmploye extends JFrame implements IVue {
 	public String getVariableSaisie() {
 		return this.tVariable.getText().trim();
 	}
-
+*/
 	@Override
 	public void afficheModele() {
 		this.lObject.setText(this.monControleur.getModele().toString());
 	}
-
+	
 }
