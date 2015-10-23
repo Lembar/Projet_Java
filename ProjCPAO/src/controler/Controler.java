@@ -56,8 +56,11 @@ public class Controler implements ActionListener, ListSelectionListener {
 		case "Valider":
 			System.out.println("Click valider");
 			this.vue.valideAjoutEmploye();
-			this.vue.valideModificationEmploye();
+			
 			break;
+		case "OK":
+			System.out.println("Click ok");
+			this.vue.valideModificationEmploye();
 		}
 	}
 	

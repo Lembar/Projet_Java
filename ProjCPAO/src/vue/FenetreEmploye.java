@@ -37,10 +37,12 @@ public class FenetreEmploye extends JFrame implements IVue {
 	private JPanel panelAjout;
 	private JPanel panelModifie;
 
-	private JButton btnValider;
+	private JButton btnValiderAjout;
+	private JButton btnValiderModif;
 	private JButton btnModifie;
 	private JButton btnSupprime;
 	private JButton btnAjoute;
+	
 
 	private JTable table;
 
@@ -79,7 +81,7 @@ public class FenetreEmploye extends JFrame implements IVue {
 
 		// panel ajout //////////////////////////////////////////////////////
 		panelAjout = new JPanel();
-		btnValider = new JButton("Valider");
+		btnValiderAjout = new JButton("Valider");
 
 		panelAjout.setPreferredSize(new Dimension(200, 150));
 		panelAjout.setBorder(new javax.swing.border.BevelBorder(
@@ -100,8 +102,8 @@ public class FenetreEmploye extends JFrame implements IVue {
 		panelAjout.add(tNom);
 		tPrenom.setBounds(65, 70, 120, 25);
 		panelAjout.add(tPrenom);
-		btnValider.setBounds(58, 110, 90, 25);
-		panelAjout.add(btnValider);
+		btnValiderAjout.setBounds(58, 110, 90, 25);
+		panelAjout.add(btnValiderAjout);
 
 		panelPrincipal.add(panelAjout);
 		panelAjout.setVisible(false);
@@ -109,7 +111,7 @@ public class FenetreEmploye extends JFrame implements IVue {
 		// panel modifier
 		// //////////////////////////////////////////////////////////////
 		panelModifie = new JPanel();
-		btnValider = new JButton("Valider");
+		btnValiderModif = new JButton("OK");
 		panelModifie.setPreferredSize(new Dimension(200, 150));
 		panelModifie.setBorder(new javax.swing.border.BevelBorder(
 				BevelBorder.RAISED));
@@ -129,8 +131,8 @@ public class FenetreEmploye extends JFrame implements IVue {
 		panelModifie.add(tNom);
 		tPrenom.setBounds(65, 70, 120, 25);
 		panelModifie.add(tPrenom);
-		btnValider.setBounds(58, 110, 90, 25);
-		panelModifie.add(btnValider);
+		btnValiderModif.setBounds(58, 110, 90, 25);
+		panelModifie.add(btnValiderModif);
 
 		panelPrincipal.add(panelModifie);
 		panelModifie.setVisible(false);
@@ -155,7 +157,8 @@ public class FenetreEmploye extends JFrame implements IVue {
 		btnAjoute.addActionListener(ctrl);
 		btnModifie.addActionListener(ctrl);
 		btnSupprime.addActionListener(ctrl);
-		btnValider.addActionListener(ctrl);
+		btnValiderAjout.addActionListener(ctrl);
+		btnValiderModif.addActionListener(ctrl);
 
 		// this.pack();
 
