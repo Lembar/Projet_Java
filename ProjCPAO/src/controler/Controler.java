@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import dao.EmployeDAO;
 import panels.EmployeModele;
+import utils.DefaultValues;
 import vue.IVue;
 import model.metier.Employe;
 
@@ -15,7 +16,7 @@ public class Controler implements ActionListener {
 	private EmployeModele listeEmployes;
 	
 	public Controler(){
-		listeEmployes = new EmployeModele(EmployeDAO);
+		listeEmployes = new EmployeModele(DefaultValues.getDefaultFactory().getEmployeDAO().findAll());
 	}
 	
 	public void setVue(IVue vue) {
@@ -35,14 +36,16 @@ public class Controler implements ActionListener {
 	public void actionPerformed(ActionEvent ae) {
 		switch(ae.getActionCommand()){
 		case "Ajouter":
-			Employe emp = new Employe(vue.getIdSaisi(),vue.getNomSaisi(),vue.getPrenomSaisi());
-			
+			System.out.println("Click ajouter");
 			break;
 		case "Modifier":
+			System.out.println("Click modifier");
 			break;
 		case "Supprimer":
+			System.out.println("Click supprimer");
 			break;
 		case "Valider":
+			System.out.println("Click valider");
 			break;
 		}
 	}
