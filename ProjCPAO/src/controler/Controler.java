@@ -3,9 +3,9 @@ package controler;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import dao.EmployeDAO;
 import panels.EmployeModele;
 import utils.DefaultValues;
+import vue.FenetreEmploye;
 import vue.IVue;
 import model.metier.Employe;
 
@@ -36,10 +36,10 @@ public class Controler implements ActionListener {
 	public void actionPerformed(ActionEvent ae) {
 		switch(ae.getActionCommand()){
 		case "Ajouter":
-			System.out.println("Click ajouter");
+			FenetreEmploye.affichePanelAjout();
 			break;
 		case "Modifier":
-			System.out.println("Click modifier");
+			FenetreEmploye.affichePanelModifie();
 			break;
 		case "Supprimer":
 			System.out.println("Click supprimer");

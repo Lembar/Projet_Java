@@ -31,8 +31,8 @@ public class FenetreEmploye extends JFrame implements IVue {
 	private JPanel panelBoutons;
 	private JPanel panelTitre;
 	private JPanel panelPrincipal;
-	private JPanel panelAjout;
-	private JPanel panelModifie;
+	private static JPanel panelAjout;
+	private static JPanel panelModifie;
 
 	private JButton btnValider;
 	private JButton btnModifie;
@@ -41,14 +41,14 @@ public class FenetreEmploye extends JFrame implements IVue {
 
 	public FenetreEmploye(Controler ctrl) {
 
-		// panel boutons
+		// panel boutons//////////////////////////////////////////////////////
 		panelBoutons = new JPanel();
 		panelBoutons.setPreferredSize(new Dimension(100, 50));
 		panelBoutons.setBorder(new javax.swing.border.BevelBorder(
 				BevelBorder.RAISED));
 		panelBoutons.setBackground(Color.ORANGE);
 
-		// panel titre
+		// panel titre //////////////////////////////////////////////////////
 		panelTitre = new JPanel();
 		panelTitre.setPreferredSize(new Dimension(100, 50));
 		panelTitre.setBorder(new javax.swing.border.BevelBorder(
@@ -59,28 +59,31 @@ public class FenetreEmploye extends JFrame implements IVue {
 		lTitle.setFont(fon);
 		panelTitre.add(lTitle);
 
-		// panel principal
+		// panel principal //////////////////////////////////////////////////
 		panelPrincipal = new JPanel();
 		panelPrincipal.setBackground(Color.yellow);
 
+		//table /////////////////////////////////////////////////////////////
 		JTable table = new JTable(ctrl.getListeEmployes());
 		JScrollPane jsp = new JScrollPane(table);
 		panelPrincipal.add(jsp);
-		
 
-		// panel ajout
+		// panel ajout //////////////////////////////////////////////////////
 		panelAjout = new JPanel();
 		btnValider = new JButton("Valider");
+		
 		panelAjout.setPreferredSize(new Dimension(200, 150));
 		panelAjout.setBorder(new javax.swing.border.BevelBorder(
 				BevelBorder.RAISED));
 		panelAjout.setBackground(Color.GREEN);
+
+		
 		tNom = new JTextField();
 		tPrenom = new JTextField();
 		lNom = new JLabel("Nom:");
 		lPrenom = new JLabel("Prénom:");
-
-		panelAjout.setLayout(null);
+		
+	    panelAjout.setLayout(null);
 		lNom.setBounds(10, 70, 50, 25);
 		panelAjout.add(lNom);
 		lPrenom.setBounds(10, 40, 50, 25);
@@ -88,14 +91,14 @@ public class FenetreEmploye extends JFrame implements IVue {
 		tNom.setBounds(65, 40, 120, 25);
 		panelAjout.add(tNom);
 		tPrenom.setBounds(65, 70, 120, 25);
-		panelAjout.add(tPrenom);
+		panelAjout.add(tPrenom); 
 		btnValider.setBounds(58, 110, 90, 25);
 		panelAjout.add(btnValider);
 
 		panelPrincipal.add(panelAjout);
 		panelAjout.setVisible(false);
 
-		// panel modifier
+		// panel modifier //////////////////////////////////////////////////////////////
 		panelModifie = new JPanel();
 		btnValider = new JButton("Valider");
 		panelModifie.setPreferredSize(new Dimension(200, 150));
@@ -121,14 +124,14 @@ public class FenetreEmploye extends JFrame implements IVue {
 		panelModifie.add(btnValider);
 
 		panelPrincipal.add(panelModifie);
-		panelModifie.setVisible(true);
+		panelModifie.setVisible(false);
 
-		// ajout panel sur la fenetre
+		// ajout panel sur la fenetre//////////////////////////////////////////////////////
 		this.add(panelTitre, BorderLayout.NORTH);
 		this.add(panelBoutons, BorderLayout.SOUTH);
 		this.add(panelPrincipal, BorderLayout.CENTER);
 
-		// ajout button
+		// ajout button	//////////////////////////////////////////////////////
 		btnAjoute = new JButton("Ajouter");
 		btnModifie = new JButton("Modifier");
 		btnSupprime = new JButton("Supprimer");
@@ -136,6 +139,9 @@ public class FenetreEmploye extends JFrame implements IVue {
 		panelBoutons.add(btnAjoute);
 		panelBoutons.add(btnModifie);
 		panelBoutons.add(btnSupprime);
+		
+		btnModifie.setEnabled(false);
+		btnSupprime.setEnabled(false);
 
 		btnAjoute.addActionListener(ctrl);
 		btnModifie.addActionListener(ctrl);
@@ -144,13 +150,23 @@ public class FenetreEmploye extends JFrame implements IVue {
 		
 		// this.pack();
 
-		// Creation fenetre
+		// Creation fenetre //////////////////////////////////////////////////////
 		this.setTitle("Java");
-		this.setSize(1200, 800);
+		this.setSize(1100, 700);
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
 		this.setVisible(true);
+	}
+	
+	public static void affichePanelAjout() {
+		panelAjout.setVisible(true);
+		panelModifie.setVisible(false);
+	}
+	
+	public static void affichePanelModifie() {
+		panelModifie.setVisible(true);
+		panelAjout.setVisible(false);
 	}
 
 	@Override
@@ -163,13 +179,6 @@ public class FenetreEmploye extends JFrame implements IVue {
 		return this.tPrenom.getText().trim();
 	}
 
-	/*
-	 * @Override public String getRegleSaisie() { return
-	 * this.tRegle.getText().trim(); }
-	 * 
-	 * @Override public String getVariableSaisie() { return
-	 * this.tVariable.getText().trim(); }
-	 */
 	@Override
 	public void afficheModele() {
 		this.lObject.setText(this.monControleur.getModele().toString());
