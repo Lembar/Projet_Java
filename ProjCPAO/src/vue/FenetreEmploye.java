@@ -224,12 +224,6 @@ public class FenetreEmploye extends JFrame implements IVue {
 		tPrenomAjout.setText((String) (table.getValueAt(i, 1)));
 	}
 
-//	public void valideAjoutEmploye() {
-//		Employe emp = new Employe(getNomSaisi(), getPrenomSaisi());
-//		DefaultValues.getDefaultFactory().getEmployeDAO().create(emp);
-//		monControleur.getListeEmployes().addRow(emp);
-//	}
-//
 //	public void valideModificationEmploye() {
 //		Employe emp = monControleur.getListeEmployes().getEmploye(
 //				table.getSelectedRow());
@@ -238,10 +232,4 @@ public class FenetreEmploye extends JFrame implements IVue {
 //		DefaultValues.getDefaultFactory().getEmployeDAO().update(emp);
 //
 //	}
-//	
-//    public void supprimeEmploye() {
-//        Employe emp = monControleur.getListeEmployes().getEmploye(table.getSelectedRow());
-//        DefaultValues.getDefaultFactory().getEmployeDAO().delete(emp);
-//}
-
 }
