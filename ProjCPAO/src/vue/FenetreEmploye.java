@@ -55,14 +55,14 @@ public class FenetreEmploye extends JFrame implements IVue {
 		panelBoutons.setPreferredSize(new Dimension(100, 50));
 		panelBoutons.setBorder(new javax.swing.border.BevelBorder(
 				BevelBorder.RAISED));
-		panelBoutons.setBackground(Color.BLACK);
+		panelBoutons.setBackground(Color.lightGray);
 
 		// panel titre //////////////////////////////////////////////////////
 		panelTitre = new JPanel();
 		panelTitre.setPreferredSize(new Dimension(100, 50));
 		panelTitre.setBorder(new javax.swing.border.BevelBorder(
 				BevelBorder.RAISED));
-		panelTitre.setBackground(Color.BLACK);
+		panelTitre.setBackground(Color.LIGHT_GRAY);
 		Font fon = new Font("Arial", Font.BOLD, 35);
 		lTitle = new JLabel("Bienvenue");
 		lTitle.setFont(fon);
@@ -71,7 +71,8 @@ public class FenetreEmploye extends JFrame implements IVue {
 
 		// panel principal //////////////////////////////////////////////////
 		panelPrincipal = new JPanel();
-		panelPrincipal.setBackground(Color.gray);
+		panelPrincipal.setBackground(Color.white);
+		panelPrincipal.setLayout(new BorderLayout());
 
 		// table /////////////////////////////////////////////////////////////
 		table = new JTable(ctrl.getListeEmployes());
@@ -80,7 +81,7 @@ public class FenetreEmploye extends JFrame implements IVue {
 		table.setSelectionModel(listSelectionModel);
 
 		JScrollPane jsp = new JScrollPane(table);
-		panelPrincipal.add(jsp);
+		panelPrincipal.add(jsp, BorderLayout.WEST);
 
 		// panel ajout //////////////////////////////////////////////////////
 		panelAjout = new JPanel();
@@ -89,7 +90,7 @@ public class FenetreEmploye extends JFrame implements IVue {
 		panelAjout.setPreferredSize(new Dimension(200, 150));
 		panelAjout.setBorder(new javax.swing.border.BevelBorder(
 				BevelBorder.RAISED));
-		panelAjout.setBackground(Color.white);
+		panelAjout.setBackground(Color.lightGray);
 
 		tNomAjout = new JTextField();
 		tPrenomAjout = new JTextField();
@@ -108,7 +109,7 @@ public class FenetreEmploye extends JFrame implements IVue {
 		btnValiderAjout.setBounds(58, 110, 90, 25);
 		panelAjout.add(btnValiderAjout);
 
-		panelPrincipal.add(panelAjout);
+		panelPrincipal.add(panelAjout,BorderLayout.EAST);
 		panelAjout.setVisible(false);
 
 		// panel modifier
@@ -118,7 +119,7 @@ public class FenetreEmploye extends JFrame implements IVue {
 		panelModifie.setPreferredSize(new Dimension(200, 150));
 		panelModifie.setBorder(new javax.swing.border.BevelBorder(
 				BevelBorder.RAISED));
-		panelModifie.setBackground(Color.white);
+		panelModifie.setBackground(Color.lightGray);
 
 		tNomModif = new JTextField();
 		tPrenomModif = new JTextField();
@@ -142,7 +143,7 @@ public class FenetreEmploye extends JFrame implements IVue {
 
 		// ajout panel sur la fenetre//////////////////////////////////////////////////////
 		this.add(panelTitre, BorderLayout.NORTH);
-		this.add(panelBoutons, BorderLayout.SOUTH);
+		this.add(panelBoutons, BorderLayout.EAST);
 		this.add(panelPrincipal, BorderLayout.CENTER);
 
 		// ajout button //////////////////////////////////////////////////////
@@ -150,6 +151,10 @@ public class FenetreEmploye extends JFrame implements IVue {
 		btnModifie = new JButton("Modifier");
 		btnSupprime = new JButton("Supprimer");
 
+		btnAjoute.setPreferredSize(new Dimension(95,25));
+		btnModifie.setPreferredSize(new Dimension(95,25));
+		btnSupprime.setPreferredSize(new Dimension(95,25));
+		
 		panelBoutons.add(btnAjoute);
 		panelBoutons.add(btnModifie);
 		panelBoutons.add(btnSupprime);
@@ -168,7 +173,7 @@ public class FenetreEmploye extends JFrame implements IVue {
 		// Creation fenetre
 		// //////////////////////////////////////////////////////
 		this.setTitle("Java");
-		this.setSize(1100, 700);
+		this.setSize(759, 550);
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
@@ -202,20 +207,10 @@ public class FenetreEmploye extends JFrame implements IVue {
 	public String getNomSaisi() {
 		return this.tNomAjout.getText().trim();
 	}
-	
-	@Override
-	public String getNomSaisiModif() {
-		return this.tNomModif.getText().trim();
-	}
-	
+
 	@Override
 	public String getPrenomSaisi() {
 		return this.tPrenomAjout.getText().trim();
-	}
-	
-	@Override
-	public String getPrenomSaisiModif() {
-		return this.tPrenomModif.getText().trim();
 	}
 
 	@Override
@@ -228,19 +223,24 @@ public class FenetreEmploye extends JFrame implements IVue {
 		this.btnSupprime.setEnabled(a);
 
 	}
+	
+	public void desactiveBouton() {
+		this.btnModifie.setEnabled(false);
+		this.btnSupprime.setEnabled(false);
+	}
 
 	public void getValeur(int i) {
 		tNomModif.setText((String) (table.getValueAt(i, 0)));
 		tPrenomModif.setText((String) (table.getValueAt(i, 1)));
-
 	}
 
-//	public void valideModificationEmploye() {
-//		Employe emp = monControleur.getListeEmployes().getEmploye(
-//				table.getSelectedRow());
-//		emp.setNom(getNomSaisi());
-//		emp.setPrenom(getPrenomSaisi());
-//		DefaultValues.getDefaultFactory().getEmployeDAO().update(emp);
-//
-//	}
+	@Override
+	public String getPrenomSaisiModif() {
+		return this.tPrenomModif.getText().trim();
+	}
+
+	@Override
+	public String getNomSaisiModif() {
+		return this.tNomModif.getText().trim();
+	}
 }

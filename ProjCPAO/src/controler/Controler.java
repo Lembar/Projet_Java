@@ -63,7 +63,8 @@ public class Controler implements ActionListener, ListSelectionListener {
 			this.modele = new Employe(this.vue.getNomSaisi(),this.vue.getPrenomSaisi());
 			this.listeEmployes.addRow(modele);
 			DefaultValues.getDefaultFactory().getEmployeDAO().create(modele);			
-			this.vue.invisiblePanelAjout();			
+			this.vue.invisiblePanelAjout();	
+			this.vue.desactiveBouton();		
 			break;
 			
 		case "OK":
@@ -74,6 +75,8 @@ public class Controler implements ActionListener, ListSelectionListener {
 			modele.setPrenom(this.vue.getPrenomSaisiModif()); 											
 			DefaultValues.getDefaultFactory().getEmployeDAO().update(modele);
 			this.vue.invisiblePanelModif();
+			this.vue.desactiveBouton();
+			break;
 		}
 	}
 	
