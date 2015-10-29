@@ -6,15 +6,16 @@ import java.util.Collections;
 import javax.swing.table.AbstractTableModel;
 
 import model.metier.Employe;
+import model.metier.Regle;
 
-public class EmployeModele extends AbstractTableModel {
+public class RegleModele extends AbstractTableModel {
 
-	private ArrayList<Employe> listeEmp;
+	private ArrayList<Regle> listeReg;
 
-	private final String[] COLONNES = { "Nom", "Prenom" };
+	private final String[] COLONNES = { "Condition", "Action", "Actif" };
 
-	public EmployeModele(ArrayList<Employe> arrayList) {
-		this.listeEmp = arrayList;
+	public RegleModele(ArrayList<Regle> arrayList) {
+		this.listeReg = arrayList;
 	}
 
 	@Override
@@ -29,38 +30,40 @@ public class EmployeModele extends AbstractTableModel {
 
 	@Override
 	public int getRowCount() {
-		return this.listeEmp.size();
+		return this.listeReg.size();
 	}
 
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
-		Employe emp = this.listeEmp.get(rowIndex);
+		Regle reg = this.listeReg.get(rowIndex);
 		Object obj = null;
 		switch (columnIndex) {
 		case 0:
-			obj = emp.getNom();
+			obj = reg.getCondition();
 			break;
 		case 1:
-			obj = emp.getPrenom();
+			obj = reg.getAction();
+			break;
+		case 2:
+			obj = reg.getActif();
 		}
 		return obj;
 	}
 
-	public Employe getEmploye(int index) {
-		return listeEmp.get(index);
+	public Regle getRegle(int index) {
+		return listeReg.get(index);
 	}
 
-	public void addRow(Employe emp) {
+	public void addRow(Regle reg) {
 
-		this.listeEmp.add(emp);
-		Collections.sort(this.listeEmp);
+		this.listeReg.add(reg);
+		Collections.sort(this.listeReg);
 		this.fireTableDataChanged();
 	}
 
 	public void deleteRow(int i) {
-		this.listeEmp.remove(i);
-		Collections.sort(this.listeEmp);
+		this.listeReg.remove(i);
+		Collections.sort(this.listeReg);
 		this.fireTableDataChanged();
 	}
-
 }

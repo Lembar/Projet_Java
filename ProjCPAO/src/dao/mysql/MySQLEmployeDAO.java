@@ -108,7 +108,7 @@ public class MySQLEmployeDAO implements EmployeDAO {
 			ResultSet rs = ps.executeQuery();
 			while (rs.next())
 				regl.add(new Regle(rs.getInt("id"), rs.getString("conditio"),
-						rs.getString("action"), rs.getBoolean("actif")));
+						rs.getString("action"), rs.getInt("actif")));
 		}
 
 		catch (SQLException e) {

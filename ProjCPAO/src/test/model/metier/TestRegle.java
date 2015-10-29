@@ -7,7 +7,7 @@ import org.junit.Test;
 
 public class TestRegle {
 
-	Regle regle = new Regle(2, "Statut = cadre", "Pce = 0.05", false);
+	Regle regle = new Regle(2, "Statut = cadre", "Pce = 0.05", 0);
 
 	@Test
 	public void testRegleNotNull() {
@@ -89,7 +89,7 @@ public class TestRegle {
 	@Test
 	public void testRegleSetActif() {
 		Regle regle = new Regle();
-		regle.setActif(true);
+		regle.setActif(1);
 		assertEquals(true, regle.getActif());
 
 	}

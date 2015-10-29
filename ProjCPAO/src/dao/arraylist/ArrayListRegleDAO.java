@@ -20,8 +20,8 @@ public class ArrayListRegleDAO implements RegleDAO {
 
 	public ArrayListRegleDAO() {
 		this.regles = new ArrayList<Regle>();
-		Regle r1 = new Regle(1, "cadre et brut3200", "rcp=0.05", false);
-		Regle r2 = new Regle(2, "cadre", "Pce=0.05", false);
+		Regle r1 = new Regle(1, "cadre et brut3200", "rcp=0.05", 0);
+		Regle r2 = new Regle(2, "cadre", "Pce=0.05", 0);
 		regles.add(r1);
 		regles.add(r2);
 	}
@@ -74,6 +74,12 @@ public class ArrayListRegleDAO implements RegleDAO {
 
 	public ArrayList<Regle> getRegle() {
 		return regles;
+	}
+
+	@Override
+	public ArrayList<Regle> findAll() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

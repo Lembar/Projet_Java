@@ -15,26 +15,26 @@ import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.BevelBorder;
 
-import utils.DefaultValues;
-import model.metier.Employe;
-import controler.ControlerCotisation;
 import controler.ControlerEmp;
 import controler.ControlerRegle;
 
-public class FenetreEmploye extends JFrame implements IVueEmp {
+public class FenetreRegle extends JFrame implements IVueRegle{
 
-	private JTextField tNomAjout;
-	private JTextField tPrenomAjout;
-	private JTextField tNomModif;
-	private JTextField tPrenomModif;
-
+	private JTextField tConditionAjout;
+	private JTextField tActionAjout;
+	private JTextField tActifAjout;
+	
+	private JTextField tConditionModif;
+	private JTextField tActionModif;
+	private JTextField tActifModif;
+	
 	private JLabel lObject;
 	private JLabel lTitle;
-	private JLabel lNom;
-	private JLabel lPrenom;
+	private JLabel lCondition;
+	private JLabel lAction;
+	private JLabel lActif;
 
-	private ControlerEmp monControleur;
-
+	private ControlerRegle monControleur;
 	private JPanel panelBoutons;
 	private JPanel panelTitre;
 	private JPanel panelPrincipal;
@@ -46,14 +46,11 @@ public class FenetreEmploye extends JFrame implements IVueEmp {
 	private JButton btnModifie;
 	private JButton btnSupprime;
 	private JButton btnAjoute;
-	private JButton btnRegle;
-	private JButton btnCotisation;
 	
-
 	private JTable table;
-
-	public FenetreEmploye(ControlerEmp ctrl) {
-
+	
+	public FenetreRegle(ControlerRegle ctrl2) {
+		
 		// panel boutons//////////////////////////////////////////////////////
 		panelBoutons = new JPanel();
 		panelBoutons.setPreferredSize(new Dimension(100, 50));
@@ -68,7 +65,7 @@ public class FenetreEmploye extends JFrame implements IVueEmp {
 				BevelBorder.RAISED));
 		panelTitre.setBackground(Color.LIGHT_GRAY);
 		Font fon = new Font("Arial", Font.BOLD, 35);
-		lTitle = new JLabel("Employés");
+		lTitle = new JLabel("Règles");
 		lTitle.setFont(fon);
 		lTitle.setForeground(Color.white);
 		panelTitre.add(lTitle);
@@ -79,9 +76,9 @@ public class FenetreEmploye extends JFrame implements IVueEmp {
 		panelPrincipal.setLayout(new BorderLayout());
 
 		// table /////////////////////////////////////////////////////////////
-		table = new JTable(ctrl.getListeEmployes());
+		table = new JTable(ctrl2.getListeRegles());
 		ListSelectionModel listSelectionModel = table.getSelectionModel();
-		listSelectionModel.addListSelectionListener(ctrl);
+		listSelectionModel.addListSelectionListener(ctrl2);
 		table.setSelectionModel(listSelectionModel);
 
 		JScrollPane jsp = new JScrollPane(table);
@@ -96,21 +93,27 @@ public class FenetreEmploye extends JFrame implements IVueEmp {
 				BevelBorder.RAISED));
 		panelAjout.setBackground(Color.lightGray);
 
-		tNomAjout = new JTextField();
-		tPrenomAjout = new JTextField();
-		lNom = new JLabel("Nom:");
-		lPrenom = new JLabel("Prenom:");
+		tConditionAjout = new JTextField();
+		tActionAjout = new JTextField();
+		tActifAjout = new JTextField();
+		lCondition = new JLabel("Condition:");
+		lAction = new JLabel("Action:");
+		lActif = new JLabel("Actif:");
 
 		panelAjout.setLayout(null);
-		lNom.setBounds(10, 40, 50, 25);
-		panelAjout.add(lNom);
-		lPrenom.setBounds(10, 70, 50, 25);
-		panelAjout.add(lPrenom);
-		tNomAjout.setBounds(65, 40, 120, 25);
-		panelAjout.add(tNomAjout);
-		tPrenomAjout.setBounds(65, 70, 120, 25);
-		panelAjout.add(tPrenomAjout);
-		btnValiderAjout.setBounds(58, 110, 90, 25);
+		lCondition.setBounds(10, 40, 50, 25);
+		panelAjout.add(lCondition);
+		lAction.setBounds(10, 70, 50, 25);
+		panelAjout.add(lAction);
+		lActif.setBounds(10, 100, 50, 25);
+		panelAjout.add(lActif);
+		tConditionAjout.setBounds(65, 40, 120, 25);
+		panelAjout.add(tConditionAjout);
+		tActionAjout.setBounds(65, 70, 120, 25);
+		panelAjout.add(tActionAjout);
+		tActifAjout.setBounds(65, 100, 120, 25);
+		panelAjout.add(tActifAjout);
+		btnValiderAjout.setBounds(58, 150, 90, 25);
 		panelAjout.add(btnValiderAjout);
 
 		panelPrincipal.add(panelAjout,BorderLayout.EAST);
@@ -125,21 +128,27 @@ public class FenetreEmploye extends JFrame implements IVueEmp {
 				BevelBorder.RAISED));
 		panelModifie.setBackground(Color.lightGray);
 
-		tNomModif = new JTextField();
-		tPrenomModif = new JTextField();
-		lNom = new JLabel("Nom:");
-		lPrenom = new JLabel("Prenom:");
-
+		tConditionModif = new JTextField();
+		tActionModif = new JTextField();
+		tActifModif = new JTextField();
+		lCondition = new JLabel("Condition:");
+		lAction = new JLabel("Action:");
+		lActif = new JLabel("Actif:");
+		
 		panelModifie.setLayout(null);
-		lNom.setBounds(10, 40, 50, 25);
-		panelModifie.add(lNom);
-		lPrenom.setBounds(10, 70, 50, 25);
-		panelModifie.add(lPrenom);
-		tNomModif.setBounds(65, 40, 120, 25);
-		panelModifie.add(tNomModif);
-		tPrenomModif.setBounds(65, 70, 120, 25);
-		panelModifie.add(tPrenomModif);
-		btnValiderModif.setBounds(58, 110, 90, 25);
+		lCondition.setBounds(10, 40, 50, 25);
+		panelModifie.add(lCondition);
+		lAction.setBounds(10, 70, 50, 25);
+		panelModifie.add(lAction);
+		lActif.setBounds(10, 100, 50, 25);
+		panelModifie.add(lActif);
+		tConditionModif.setBounds(65, 40, 120, 25);
+		panelModifie.add(tConditionModif);
+		tActionModif.setBounds(65, 70, 120, 25);
+		panelModifie.add(tActionModif);
+		tActifModif.setBounds(65, 100, 120, 25);
+		panelModifie.add(tActifModif);
+		btnValiderModif.setBounds(58, 140, 90, 25);
 		panelModifie.add(btnValiderModif);
 
 		panelPrincipal.add(panelModifie);
@@ -154,41 +163,37 @@ public class FenetreEmploye extends JFrame implements IVueEmp {
 		btnAjoute = new JButton("Ajouter");
 		btnModifie = new JButton("Modifier");
 		btnSupprime = new JButton("Supprimer");
-		btnRegle = new JButton("Règles");
-		btnCotisation = new JButton("Cotisation");
+		
 
 		btnAjoute.setPreferredSize(new Dimension(95,25));
 		btnModifie.setPreferredSize(new Dimension(95,25));
 		btnSupprime.setPreferredSize(new Dimension(95,25));
-		btnRegle.setPreferredSize(new Dimension(95,25));
-		btnCotisation.setPreferredSize(new Dimension(95,25));
+		
 		
 		panelBoutons.add(btnAjoute);
 		panelBoutons.add(btnModifie);
 		panelBoutons.add(btnSupprime);
-		panelBoutons.add(btnRegle);
-		panelBoutons.add(btnCotisation);
+
 
 		btnModifie.setEnabled(false);
 		btnSupprime.setEnabled(false);
 
-		btnAjoute.addActionListener(ctrl);
-		btnModifie.addActionListener(ctrl);
-		btnSupprime.addActionListener(ctrl);
-		btnValiderAjout.addActionListener(ctrl);
-		btnValiderModif.addActionListener(ctrl);
-		btnRegle.addActionListener(ctrl);
-		btnCotisation.addActionListener(ctrl);
-
-		// Creation fenetre  //////////////////////////////////////////////////////
-		this.setTitle("Java");
+		btnAjoute.addActionListener(ctrl2);
+		btnModifie.addActionListener(ctrl2);
+		btnSupprime.addActionListener(ctrl2);
+		btnValiderAjout.addActionListener(ctrl2);
+		btnValiderModif.addActionListener(ctrl2);
+		
+		
+		
+		// Création fenetre
+		this.setTitle("Règles");
 		this.setSize(759, 550);
 		this.setLocationRelativeTo(null);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
 		this.setVisible(true);
 	}
-
+	
 	public void affichePanelAjout() {
 		panelAjout.setVisible(true);
 		panelModifie.setVisible(false);
@@ -213,20 +218,26 @@ public class FenetreEmploye extends JFrame implements IVueEmp {
 	}
 
 	@Override
-	public String getNomSaisi() {
-		return this.tNomAjout.getText().trim();
+	public String getConditionSaisie() {
+		return this.tConditionAjout.getText().trim();
 	}
-
+	
 	@Override
-	public String getPrenomSaisi() {
-		return this.tPrenomAjout.getText().trim();
+	public String getActionSaisie() {
+		return this.tActionAjout.getText().trim();
 	}
-
+	
+	@Override
+	public int getActifSaisi() {
+		int i = Integer.parseInt(this.tActifAjout.getText().trim());
+		return i;
+	}
+	
 	@Override
 	public void afficheModele() {
 		this.lObject.setText(this.monControleur.getModele().toString());
 	}
-
+	
 	public void activeBouton(boolean a) {
 		this.btnModifie.setEnabled(a);
 		this.btnSupprime.setEnabled(a);
@@ -238,39 +249,33 @@ public class FenetreEmploye extends JFrame implements IVueEmp {
 		this.btnSupprime.setEnabled(false);
 	}
 
+	
 	public void getValeur(int i) {
-		tNomModif.setText((String) (table.getValueAt(i, 0)));
-		tPrenomModif.setText((String) (table.getValueAt(i, 1)));
-	}
-	
-	public void afficherRegle() {
-		ControlerRegle ctrl2= new ControlerRegle();
-		FenetreRegle vueSwing2 = new FenetreRegle(ctrl2);
+		tConditionModif.setText((String) (table.getValueAt(i, 0)));
+		tActionModif.setText((String) (table.getValueAt(i, 1)));
+	//	tActifModif.setText((String) (table.getValueAt(i,2)));
 		
-		ctrl2.setVue(vueSwing2);
-	}
-	
-	public void afficherCotisation() {
-		ControlerCotisation ctrl3= new ControlerCotisation();
-		FenetreCotisation vueSwing3 = new FenetreCotisation(ctrl3);
-		
-		ctrl3.setVue(vueSwing3);
 	}
 	
 	public void supprimeTexte() {
-		tNomAjout.setText("");
-		tPrenomAjout.setText("");
+		tConditionAjout.setText("");
+		tActionAjout.setText("");
+		tActifAjout.setText("");
 	}
 	
-
 	@Override
-	public String getPrenomSaisiModif() {
-		return this.tPrenomModif.getText().trim();
+	public String getConditionSaisieModif() {
+		return this.tConditionModif.getText().trim();
 	}
 
 	@Override
-	public String getNomSaisiModif() {
-		return this.tNomModif.getText().trim();
+	public String getActionSaisieModif() {
+		return this.tActionModif.getText().trim();
 	}
 	
+	@Override
+	public int getActifSaisiModif() {
+		int p = Integer.parseInt(this.tActifModif.getText().trim());
+		return p;
+	}
 }

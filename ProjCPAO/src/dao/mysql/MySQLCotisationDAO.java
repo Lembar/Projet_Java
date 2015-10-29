@@ -1,8 +1,10 @@
 package dao.mysql;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 import model.metier.Cotisation;
+import model.metier.Employe;
 import dao.CotisationDAO;
 
 public class MySQLCotisationDAO implements CotisationDAO {
@@ -91,5 +93,27 @@ public class MySQLCotisationDAO implements CotisationDAO {
 		}
 
 		return cot;
+	}
+
+	@Override
+	public ArrayList<Cotisation> findAll() {
+		ArrayList<Cotisation> liste = new ArrayList<Cotisation>();
+		Cotisation cot = null;
+		PreparedStatement ps = null;
+
+		try {
+			ps = Connect.getInstance().prepareStatement(
+					"SELECT * FROM Cotisation order by libelle_cotis, taux_cotis");
+
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				cot = new Cotisation(rs.getInt("id_cotis"), rs.getString("libelle_cotis"),
+						rs.getInt("taux_cotis"));
+				liste.add(cot);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return liste;
 	}
 }

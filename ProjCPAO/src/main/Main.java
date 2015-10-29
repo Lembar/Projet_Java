@@ -1,12 +1,12 @@
 package main;
 
 import vue.FenetreEmploye;
-import controler.Controler;
+import controler.ControlerEmp;
 
 public class Main {
 
 	public static void main(String[] args) {
-		Controler ctrl= new Controler();
+		ControlerEmp ctrl= new ControlerEmp();
 		FenetreEmploye vueSwing = new FenetreEmploye(ctrl);
 		
 		ctrl.setVue(vueSwing);

@@ -78,4 +78,10 @@ public class ArrayListCotisationDAO implements CotisationDAO {
 		return cotisations;
 	}
 
+	@Override
+	public ArrayList<Cotisation> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

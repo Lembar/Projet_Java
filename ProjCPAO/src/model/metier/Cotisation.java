@@ -1,6 +1,6 @@
 package model.metier;
 
-public class Cotisation {
+public class Cotisation implements Comparable<Cotisation> {
 	private int id = 0;
 	private String libelle = "";
 	private double taux;
@@ -49,6 +49,15 @@ public class Cotisation {
 	@Override
 	public String toString() {
 		return "Cotisation [id=" + id + ", libelle=" + libelle + ", taux=" + taux + "]";
+	}
+
+	@Override
+	public int compareTo(Cotisation c) {
+//		if (libelle.equals(c.libelle)){
+//			return taux.compareTo(c.taux);
+//		}
+//		return libelle.compareTo(c.taux);
+		return libelle.compareTo(c.libelle);
 	}
 
 }

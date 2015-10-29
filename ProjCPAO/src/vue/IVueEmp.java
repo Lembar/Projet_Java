@@ -1,6 +1,6 @@
 package vue;
 
-public interface IVue {
+public interface IVueEmp {
 
 	public void afficheModele();
 	public String getNomSaisi();

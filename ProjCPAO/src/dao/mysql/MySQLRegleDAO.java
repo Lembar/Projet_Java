@@ -1,7 +1,9 @@
 package dao.mysql;
 
 import java.sql.*;
+import java.util.ArrayList;
 
+import model.metier.Employe;
 import model.metier.Regle;
 import dao.RegleDAO;
 
@@ -26,7 +28,7 @@ public class MySQLRegleDAO implements RegleDAO {
 					Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, obj.getCondition());
 			ps.setString(2, obj.getAction());
-			ps.setBoolean(3, obj.getActif());
+			ps.setInt(3, obj.getActif());
 			ps.executeUpdate();
 			rs = ps.getGeneratedKeys();
 			rs.next();
@@ -64,7 +66,7 @@ public class MySQLRegleDAO implements RegleDAO {
 							"UPDATE Regle SET conditio=?, action=?, actif=? WHERE id_regle=?");
 			ps.setString(1, obj.getCondition());
 			ps.setString(2, obj.getAction());
-			ps.setBoolean(3, obj.getActif());
+			ps.setInt(3, obj.getActif());
 			ps.setInt(4, obj.getId());
 			ps.executeUpdate();
 		}
@@ -87,13 +89,36 @@ public class MySQLRegleDAO implements RegleDAO {
 
 			while (rs.next()) {
 				reg = new Regle(id, rs.getString("conditio"),
-						rs.getString("action"), rs.getBoolean("actif"));
+						rs.getString("action"), rs.getInt("actif"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
 		return reg;
+	}
+
+	@Override
+	public ArrayList<Regle> findAll() {
+
+		ArrayList<Regle> liste = new ArrayList<Regle>();
+		Regle reg = null;
+		PreparedStatement ps = null;
+
+		try {
+			ps = Connect.getInstance().prepareStatement(
+					"SELECT * FROM Regle order by conditio, action, actif");
+
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				reg = new Regle(rs.getInt("id_regle"), rs.getString("conditio"),
+						rs.getString("action"), rs.getInt("actif"));
+				liste.add(reg);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return liste;
 	}
 
 }

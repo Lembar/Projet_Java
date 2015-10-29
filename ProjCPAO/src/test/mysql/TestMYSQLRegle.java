@@ -16,7 +16,7 @@ public class TestMYSQLRegle {
 
 	@Test
 	public void testCreerRegleNotNull() {
-		Regle regle = new Regle("statut='cadre' et brut>3200", "abc", true);
+		Regle regle = new Regle("statut='cadre' et brut>3200", "abc", 1);
 		int id = MySQLRegleDAO.getInstance().create(regle);
 		Regle regle1 = MySQLRegleDAO.getInstance().getByID(id);
 		assertNotNull(regle1);
@@ -24,7 +24,7 @@ public class TestMYSQLRegle {
 
 	@Test
 	public void testCreerRegle() {
-		Regle regle = new Regle("statut='cadre' et brut>3200", "RCP=0.05",true);
+		Regle regle = new Regle("statut='cadre' et brut>3200", "RCP=0.05",1);
 		int id = MySQLRegleDAO.getInstance().create(regle);
 		Regle regle1 = MySQLRegleDAO.getInstance().getByID(id);
 		assertEquals("statut='cadre' et brut>3200", regle1.getCondition());
@@ -40,7 +40,7 @@ public class TestMYSQLRegle {
 	@Test
 	public void testGetById() {
 		Regle regle = new Regle("statut='cadre' et brut>3200", "RCP=0.05",
-				true);
+				1);
 		int id = MySQLRegleDAO.getInstance().create(regle);
 		assertEquals(id, MySQLRegleDAO.getInstance().getByID(id)
 				.getId());
@@ -55,7 +55,7 @@ public class TestMYSQLRegle {
 	@Test
 	public void testUpdateRegle() {
 		Regle regle1 = new Regle("statut='cadre' et brut>3200", "RCP=0.05",
-				true);
+				1);
 		int id = MySQLRegleDAO.getInstance().create(regle1);
 		MySQLRegleDAO.getInstance().update(regle1);
 		assertEquals(id, MySQLRegleDAO.getInstance().getByID(id)
@@ -71,7 +71,7 @@ public class TestMYSQLRegle {
 	@Test
 	public void testUpdateRegleNotNull() {
 		Regle regle = new Regle("statut='cadre' et brut>3200", "RCP=0.05",
-				false);
+				0);
 		int id = MySQLRegleDAO.getInstance().create(regle);
 		MySQLRegleDAO.getInstance().update(regle);
 		Regle regle1 = MySQLRegleDAO.getInstance().getByID(id);
@@ -81,7 +81,7 @@ public class TestMYSQLRegle {
 	@Test
 	public void testDeleteRegle() {
 		Regle regle = new Regle(220, "statut='cadre' et brut>3200", "RCP=0.05",
-				false);
+				0);
 		MySQLRegleDAO.getInstance().delete(regle);
 		assertNull(MySQLRegleDAO.getInstance().getByID(220));
 	}

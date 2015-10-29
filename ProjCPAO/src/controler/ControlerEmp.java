@@ -11,13 +11,13 @@ import utils.DefaultValues;
 import vue.FenetreEmploye;
 import model.metier.Employe;
 
-public class Controler implements ActionListener, ListSelectionListener {
+public class ControlerEmp implements ActionListener, ListSelectionListener {
 
 	private FenetreEmploye vue;
 	private Employe modele;
 	private EmployeModele listeEmployes;
 	
-	public Controler(){
+	public ControlerEmp(){
 		listeEmployes = new EmployeModele(DefaultValues.getDefaultFactory().getEmployeDAO().findAll());
 	}
 	
@@ -39,6 +39,7 @@ public class Controler implements ActionListener, ListSelectionListener {
 		switch(ae.getActionCommand()){
 		case "Ajouter":
 			System.out.println("Click ajouter");
+			this.vue.supprimeTexte();
 			this.vue.affichePanelAjout();
 			break;
 			
@@ -77,6 +78,13 @@ public class Controler implements ActionListener, ListSelectionListener {
 			this.vue.invisiblePanelModif();
 			this.vue.desactiveBouton();
 			break;
+		case "Règles":
+			System.out.println("Click regle");
+			this.vue.afficherRegle();
+			break;
+		case "Cotisation":
+			System.out.println("Click Cotisation");
+			this.vue.afficherCotisation();
 		}
 	}
 	
