@@ -73,7 +73,7 @@ public class TestArrayListRegle {
 		int id = ArrayListRegleDAO.getInstance().create(regle);
 		regle.setActif(0);
 		ArrayListRegleDAO.getInstance().update(regle);
-		assertEquals(true, ArrayListRegleDAO.getInstance().getByID(id).getActif());
+		assertEquals(0, ArrayListRegleDAO.getInstance().getByID(id).getActif());
 	}
 
 }
