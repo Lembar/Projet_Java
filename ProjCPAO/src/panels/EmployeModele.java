@@ -9,6 +9,11 @@ import model.metier.Employe;
 
 public class EmployeModele extends AbstractTableModel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6323000599315544690L;
+
 	private ArrayList<Employe> listeEmp;
 
 	private final String[] COLONNES = { "Nom", "Prenom" };

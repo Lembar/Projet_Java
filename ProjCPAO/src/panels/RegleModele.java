@@ -5,10 +5,14 @@ import java.util.Collections;
 
 import javax.swing.table.AbstractTableModel;
 
-import model.metier.Employe;
 import model.metier.Regle;
 
 public class RegleModele extends AbstractTableModel {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3431999194796473340L;
 
 	private ArrayList<Regle> listeReg;
 

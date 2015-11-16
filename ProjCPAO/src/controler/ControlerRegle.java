@@ -9,7 +9,6 @@ import javax.swing.event.ListSelectionListener;
 import model.metier.Regle;
 import panels.RegleModele;
 import utils.DefaultValues;
-import vue.FenetreEmploye;
 import vue.FenetreRegle;
 
 public class ControlerRegle implements ActionListener, ListSelectionListener {

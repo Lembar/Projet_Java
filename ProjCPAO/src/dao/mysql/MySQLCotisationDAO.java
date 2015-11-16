@@ -4,7 +4,6 @@ import java.sql.*;
 import java.util.ArrayList;
 
 import model.metier.Cotisation;
-import model.metier.Employe;
 import dao.CotisationDAO;
 
 public class MySQLCotisationDAO implements CotisationDAO {

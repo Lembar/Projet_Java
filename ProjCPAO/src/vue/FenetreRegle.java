@@ -15,11 +15,14 @@ import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.BevelBorder;
 
-import controler.ControlerEmp;
 import controler.ControlerRegle;
 
 public class FenetreRegle extends JFrame implements IVueRegle{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3050228884712473157L;
 	private JTextField tConditionAjout;
 	private JTextField tActionAjout;
 	private JTextField tActifAjout;

@@ -3,7 +3,6 @@ package dao.mysql;
 import java.sql.*;
 import java.util.ArrayList;
 
-import model.metier.Employe;
 import model.metier.Regle;
 import dao.RegleDAO;
 

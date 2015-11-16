@@ -9,6 +9,11 @@ import model.metier.Cotisation;
 
 public class CotisationModele  extends AbstractTableModel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2954398350746156864L;
+
 	private ArrayList<Cotisation> listeCotis;
 	
 	private final String[] COLONNES = { "Cotisation", "Taux" };

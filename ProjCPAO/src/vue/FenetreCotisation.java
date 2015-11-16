@@ -19,6 +19,10 @@ import controler.ControlerCotisation;
 
 public class FenetreCotisation extends JFrame implements IVueCotisation  {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6771022344552256717L;
 	private JTextField tCotisAjout;
 	private JTextField tTauxAjout;
 	private JTextField tCotisModif;
