@@ -15,14 +15,17 @@ import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.BevelBorder;
 
-import utils.DefaultValues;
-import model.metier.Employe;
 import controler.ControlerCotisation;
 import controler.ControlerEmp;
+import controler.ControlerFichePaie;
 import controler.ControlerRegle;
 
 public class FenetreEmploye extends JFrame implements IVueEmp {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2184431446647952851L;
 	private JTextField tNomAjout;
 	private JTextField tPrenomAjout;
 	private JTextField tNomModif;
@@ -48,6 +51,7 @@ public class FenetreEmploye extends JFrame implements IVueEmp {
 	private JButton btnAjoute;
 	private JButton btnRegle;
 	private JButton btnCotisation;
+	private JButton btnFichePaie;
 	
 
 	private JTable table;
@@ -156,21 +160,27 @@ public class FenetreEmploye extends JFrame implements IVueEmp {
 		btnSupprime = new JButton("Supprimer");
 		btnRegle = new JButton("Règles");
 		btnCotisation = new JButton("Cotisation");
+		btnFichePaie = new JButton("Fiche de Paie");
 
 		btnAjoute.setPreferredSize(new Dimension(95,25));
 		btnModifie.setPreferredSize(new Dimension(95,25));
 		btnSupprime.setPreferredSize(new Dimension(95,25));
 		btnRegle.setPreferredSize(new Dimension(95,25));
 		btnCotisation.setPreferredSize(new Dimension(95,25));
+		btnFichePaie.setPreferredSize(new Dimension(95,25));
 		
 		panelBoutons.add(btnAjoute);
 		panelBoutons.add(btnModifie);
 		panelBoutons.add(btnSupprime);
 		panelBoutons.add(btnRegle);
 		panelBoutons.add(btnCotisation);
+		panelBoutons.add(btnFichePaie);
 
 		btnModifie.setEnabled(false);
 		btnSupprime.setEnabled(false);
+		btnFichePaie.setEnabled(false);
+		
+		btnFichePaie.setActionCommand("FichePaie");
 
 		btnAjoute.addActionListener(ctrl);
 		btnModifie.addActionListener(ctrl);
@@ -179,6 +189,7 @@ public class FenetreEmploye extends JFrame implements IVueEmp {
 		btnValiderModif.addActionListener(ctrl);
 		btnRegle.addActionListener(ctrl);
 		btnCotisation.addActionListener(ctrl);
+		btnFichePaie.addActionListener(ctrl);
 
 		// Creation fenetre  //////////////////////////////////////////////////////
 		this.setTitle("Java");
@@ -230,12 +241,14 @@ public class FenetreEmploye extends JFrame implements IVueEmp {
 	public void activeBouton(boolean a) {
 		this.btnModifie.setEnabled(a);
 		this.btnSupprime.setEnabled(a);
+		this.btnFichePaie.setEnabled(a);
 
 	}
 	
 	public void desactiveBouton() {
 		this.btnModifie.setEnabled(false);
 		this.btnSupprime.setEnabled(false);
+		this.btnFichePaie.setEnabled(false);
 	}
 
 	public void getValeur(int i) {
@@ -257,6 +270,14 @@ public class FenetreEmploye extends JFrame implements IVueEmp {
 		ctrl3.setVue(vueSwing3);
 	}
 	
+	public void afficherFichePaie() {
+		ControlerFichePaie ctrl4= new ControlerFichePaie();
+		FenetreFichePaie vueSwing4 = new FenetreFichePaie(ctrl4);
+		
+		ctrl4.setVue(vueSwing4);
+		
+	}
+	
 	public void supprimeTexte() {
 		tNomAjout.setText("");
 		tPrenomAjout.setText("");
@@ -272,5 +293,6 @@ public class FenetreEmploye extends JFrame implements IVueEmp {
 	public String getNomSaisiModif() {
 		return this.tNomModif.getText().trim();
 	}
+
 	
 }

@@ -7,12 +7,9 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import panels.CotisationModele;
-import panels.EmployeModele;
 import model.metier.Cotisation;
-import model.metier.Employe;
 import utils.DefaultValues;
 import vue.FenetreCotisation;
-import vue.FenetreEmploye;
 
 
 public class ControlerCotisation implements ActionListener, ListSelectionListener {
@@ -44,13 +41,11 @@ public class ControlerCotisation implements ActionListener, ListSelectionListene
 	public void actionPerformed(ActionEvent c) {
 		switch(c.getActionCommand()){
 		case "Ajouter":
-			System.out.println("Click ajouter");
 			this.vue.supprimeTexte();
 			this.vue.affichePanelAjout();
 			break;
 			
 		case "Modifier":
-			System.out.println("Click modifier");	
 			int i = this.vue.ligneSelect();
 			this.vue.getValeur(i);	
 			this.vue.activeBouton(true);
@@ -58,7 +53,6 @@ public class ControlerCotisation implements ActionListener, ListSelectionListene
 			break;
 			
 		case "Supprimer":
-			System.out.println("Click supprimer");
 			int b = this.vue.ligneSelect();			
 			this.modele=this.listeCotisations.getCotisation(b);
 			this.listeCotisations.deleteRow(b);	
@@ -66,7 +60,6 @@ public class ControlerCotisation implements ActionListener, ListSelectionListene
 			break;
 			
 		case "Valider":
-			System.out.println("Click valider");
 			this.modele = new Cotisation(this.vue.getCotisationSaisie(),this.vue.getTauxSaisi());
 			this.listeCotisations.addRow(modele);
 			DefaultValues.getDefaultFactory().getCotisationDAO().create(modele);			
@@ -75,7 +68,6 @@ public class ControlerCotisation implements ActionListener, ListSelectionListene
 			break;
 			
 		case "OK":
-			System.out.println("Click ok");
 			int g = this.vue.ligneSelect();	
 			this.modele=this.listeCotisations.getCotisation(g);
 			modele.setLibelle(this.vue.getCotisationSaisieModif()); 			

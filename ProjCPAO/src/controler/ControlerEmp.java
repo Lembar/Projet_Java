@@ -38,13 +38,11 @@ public class ControlerEmp implements ActionListener, ListSelectionListener {
 	public void actionPerformed(ActionEvent ae) {
 		switch(ae.getActionCommand()){
 		case "Ajouter":
-			System.out.println("Click ajouter");
 			this.vue.supprimeTexte();
 			this.vue.affichePanelAjout();
 			break;
 			
-		case "Modifier":
-			System.out.println("Click modifier");	
+		case "Modifier":	
 			int i = this.vue.ligneSelect();
 			this.vue.getValeur(i);	
 			this.vue.activeBouton(true);
@@ -52,7 +50,6 @@ public class ControlerEmp implements ActionListener, ListSelectionListener {
 			break;
 			
 		case "Supprimer":
-			System.out.println("Click supprimer");
 			int b = this.vue.ligneSelect();			
 			this.modele=this.listeEmployes.getEmploye(b);
 			this.listeEmployes.deleteRow(b);	
@@ -60,7 +57,6 @@ public class ControlerEmp implements ActionListener, ListSelectionListener {
 			break;
 			
 		case "Valider":
-			System.out.println("Click valider");
 			this.modele = new Employe(this.vue.getNomSaisi(),this.vue.getPrenomSaisi());
 			this.listeEmployes.addRow(modele);
 			DefaultValues.getDefaultFactory().getEmployeDAO().create(modele);			
@@ -69,7 +65,6 @@ public class ControlerEmp implements ActionListener, ListSelectionListener {
 			break;
 			
 		case "OK":
-			System.out.println("Click ok");
 			int c = this.vue.ligneSelect();	
 			this.modele=this.listeEmployes.getEmploye(c);
 			modele.setNom(this.vue.getNomSaisiModif()); 			
@@ -79,12 +74,12 @@ public class ControlerEmp implements ActionListener, ListSelectionListener {
 			this.vue.desactiveBouton();
 			break;
 		case "Règles":
-			System.out.println("Click regle");
 			this.vue.afficherRegle();
 			break;
 		case "Cotisation":
-			System.out.println("Click Cotisation");
 			this.vue.afficherCotisation();
+		case "FichePaie":
+			this.vue.afficherFichePaie();
 		}
 	}
 	
